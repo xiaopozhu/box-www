@@ -42,6 +42,7 @@ interface Props {
 }
 
 export default function Layout(props: Props) {
+  const { profile } = props;
   return (
     <div
       style={{ maxWidth: "1440px", margin: "0 auto" }}
@@ -51,7 +52,11 @@ export default function Layout(props: Props) {
         <header className={styles.menu}>
           <div>
             <div className={styles.avatarContainer}>
-              <Avatar size={120} icon={<AntDesignOutlined />} />
+              {profile ? (
+                <Avatar size={120} src={profile.avatar} />
+              ) : (
+                <Avatar size={120} icon={<AntDesignOutlined />} />
+              )}
             </div>
             <h1 className={styles.menuTitle}>你好，游客</h1>
 
@@ -68,7 +73,7 @@ export default function Layout(props: Props) {
             </nav>
           </div>
           <ul>
-            {props.profile ? (
+            {profile ? (
               <>
                 <li>
                   <Link href="/settings">

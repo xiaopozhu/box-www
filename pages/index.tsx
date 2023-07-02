@@ -1,4 +1,4 @@
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,6 +49,9 @@ export default function Home(props: any) {
       if (currentValue === newValue) {
         const temp: SelectProps["options"] = [];
         boxs.forEach((box) => {
+          if (box.id === "mybox") {
+            return;
+          }
           if (box.cards) {
             box.cards.forEach((item) => {
               let ok = item.id.includes(newValue);
@@ -61,7 +64,7 @@ export default function Home(props: any) {
               if (ok) {
                 temp.push({
                   value: item.path,
-                  label: item.name,
+                  label: `${item.name} - ${item.desc}`,
                 });
               }
             });
@@ -87,6 +90,7 @@ export default function Home(props: any) {
 
   const handleFavorite = (id: string) => {
     if (!profile) {
+      message.error("请前往登录!");
       return;
     }
     request("/api/v1/user/favorite", {
