@@ -1,0 +1,44 @@
+.customH3 {
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+}
+
+.cardAvatar {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.cardName {
+  font-size: 14px;
+  margin: 0;
+}
+
+.cardBody {
+  margin-top: 10px;
+}
+
+.description {
+  font-size: 12px;
+  color: #666;
+  word-break: break-word;
+}
+
+.cardFooter {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.searchTools {
+  text-align: left;
+}

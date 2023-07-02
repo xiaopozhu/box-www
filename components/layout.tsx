@@ -1,45 +1,101 @@
 import { Inter } from "next/font/google";
 import { Avatar } from "antd";
-import { AntDesignOutlined } from "@ant-design/icons";
+import {
+  AntDesignOutlined,
+  LogoutOutlined,
+  SettingOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
 import styles from "@/styles/layout.module.css";
+import Footer from "./footer";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const navMenu = [
+  {
+    href: "/#mybox",
+    text: "我的工具箱",
+  },
+  {
+    href: "/#codec",
+    text: "字符编解码",
+  },
+  {
+    href: "/#crypto",
+    text: "对称加解密",
+  },
+  {
+    href: "/#pkica",
+    text: "PKI/CA/x509",
+  },
+  {
+    href: "/#other",
+    text: "实验小工具",
+  },
+];
+
+interface Props {
+  children: React.ReactNode;
+  profile: any;
+}
+
+export default function Layout(props: Props) {
   return (
-    <div className={`${styles.container} ${inter.className}`}>
-      <header className={styles.menu}>
-        <div className={styles.avatarContainer}>
-          <Avatar size={120} icon={<AntDesignOutlined />} />
-        </div>
-        <h1 className={styles.menuTitle}>你好，游客</h1>
+    <div
+      style={{ maxWidth: "1440px", margin: "0 auto" }}
+      className={inter.className}
+    >
+      <div className={styles.container}>
+        <header className={styles.menu}>
+          <div>
+            <div className={styles.avatarContainer}>
+              <Avatar size={120} icon={<AntDesignOutlined />} />
+            </div>
+            <h1 className={styles.menuTitle}>你好，游客</h1>
 
-        <nav className={styles.menuNav}>
+            <nav className={styles.menuNav}>
+              <ul>
+                {navMenu.map((item) => {
+                  return (
+                    <li key={item.href}>
+                      <Link href={item.href}>{item.text}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </div>
           <ul>
-            <li>
-              <Link href="/mybox">我的工具箱</Link>
-            </li>
-            <li>
-              <Link href="/mybox">字符编解码</Link>
-            </li>
-            <li>
-              <Link href="/mybox">对称加解密</Link>
-            </li>
-            <li>
-              <Link href="/mybox">Hash摘要</Link>
-            </li>
-            <li>
-              <Link href="/mybox">PKI/CA/x509</Link>
-            </li>
-            <li>
-              <Link href="/mybox">其它密码技术</Link>
-            </li>
+            {props.profile ? (
+              <>
+                <li>
+                  <Link href="/settings">
+                    <SettingOutlined style={{ marginRight: "4px" }} />
+                    个人设置
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/logout">
+                    <LogoutOutlined style={{ marginRight: "4px" }} />
+                    退出登录
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link href="/login">
+                  <LoginOutlined style={{ marginRight: "4px" }} />
+                  注册/登录
+                </Link>
+              </li>
+            )}
           </ul>
-        </nav>
-      </header>
-      <main className={styles.content}>{children}</main>
+        </header>
+        <main className={styles.content}>{props.children}</main>
+      </div>
+      <Footer />
     </div>
   );
 }

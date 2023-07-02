@@ -1,0 +1,8 @@
+.footerContainer {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  color: #898c8c;
+  font-weight: 400;
+}
