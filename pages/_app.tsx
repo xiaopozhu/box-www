@@ -1,6 +1,10 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { ConfigProvider } from "antd";
+import type { Locale } from "antd/es/locale";
+// import enUS from "antd/locale/en_US";
+import zhCN from "antd/locale/zh_CN";
 
 import Layout from "@/components/layout";
 import { useEffect, useState } from "react";
@@ -8,6 +12,7 @@ import { request } from "@/utils/request";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [profile, setProfile] = useState(undefined);
+  const [locale, setLocal] = useState<Locale>(zhCN);
 
   useEffect(() => {
     request("/api/v1/user/profile", {
@@ -25,7 +30,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} profile={profile} />
+      <ConfigProvider locale={locale}>
+        <Component {...pageProps} profile={profile} />
+      </ConfigProvider>
     </Layout>
   );
 }

@@ -28,7 +28,7 @@ const navMenu = [
   },
   {
     href: "/#pkica",
-    text: "PKI/CA/x509",
+    text: "PKI / CA / x509",
   },
   {
     href: "/#other",
@@ -82,7 +82,7 @@ export default function Layout(props: Props) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/logout">
+                  <Link href="/logout" style={{ color: "red" }}>
                     <LogoutOutlined style={{ marginRight: "4px" }} />
                     退出登录
                   </Link>
