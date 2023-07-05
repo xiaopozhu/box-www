@@ -10,7 +10,7 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function Hex() {
+export default function Unicode() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState({ text: "", bytes: "" });
@@ -22,7 +22,7 @@ export default function Hex() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/hex", {
+        request("/api/v1/codec/unicode", {
           method: "POST",
           body: JSON.stringify({ ...values, type: type }),
         })
@@ -42,10 +42,10 @@ export default function Hex() {
   return (
     <>
       <Head>
-        <title>Hex - CryptoBox密码工具箱</title>
+        <title>Unicode - CryptoBox密码工具箱</title>
       </Head>
       <div style={{ marginBottom: "24px" }}>
-        <h1>Hex</h1>
+        <h1>Unicode</h1>
       </div>
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item label="编码解码" required>
@@ -81,7 +81,7 @@ export default function Hex() {
         <Form.Item>
           <Space>
             <Button type="primary" onClick={(e) => onFinish(e)}>
-              Hex
+              Unicode
             </Button>
           </Space>
         </Form.Item>
