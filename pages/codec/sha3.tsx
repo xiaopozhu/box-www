@@ -59,6 +59,7 @@ export default function SHA3() {
           <Radio.Group>
             <Radio value="plain">明文</Radio>
             <Radio value="hex">Hex</Radio>
+            <Radio value="base64">Base64</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item label="计算结果">
