@@ -10,21 +10,21 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function Base32() {
+export default function Hex() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState({ text: "", bytes: "" });
   const [type, setType] = useState("encode");
 
-  const onFinish = (e: any, et: string) => {
+  const onFinish = (e: any) => {
     e.preventDefault();
 
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/base32", {
+        request("/api/v1/codec/hex", {
           method: "POST",
-          body: JSON.stringify({ ...values, type: type, encodeType: et }),
+          body: JSON.stringify({ ...values, type: type }),
         })
           .then((resp) => {
             if (resp.code !== 0) return message.error(resp.error);
@@ -42,10 +42,10 @@ export default function Base32() {
   return (
     <>
       <Head>
-        <title>Base32 - CryptoBox密码工具箱</title>
+        <title>Hex - CryptoBox密码工具箱</title>
       </Head>
       <div style={{ marginBottom: "24px" }}>
-        <h1>Base32</h1>
+        <h1>Hex</h1>
       </div>
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item label="编码解码" required>
@@ -77,7 +77,6 @@ export default function Base32() {
           >
             <Radio.Group>
               <Radio value="plain">明文</Radio>
-              <Radio value="hex">Hex</Radio>
               <Radio value="base64">Base64</Radio>
             </Radio.Group>
           </Form.Item>
@@ -94,11 +93,8 @@ export default function Base32() {
         </Form.Item>
         <Form.Item>
           <Space>
-            <Button type="primary" onClick={(e) => onFinish(e, "std")}>
-              Base32 标准
-            </Button>
-            <Button type="primary" onClick={(e) => onFinish(e, "hex")}>
-              Base32 Hex
+            <Button type="primary" onClick={(e) => onFinish(e)}>
+              Hex
             </Button>
           </Space>
         </Form.Item>
