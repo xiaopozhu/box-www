@@ -10,6 +10,7 @@ import {
   InputNumber,
 } from "antd";
 import { useState } from "react";
+import Head from "next/head";
 
 const { TextArea } = Input;
 
@@ -52,6 +53,9 @@ export default function BLAKE2b() {
 
   return (
     <>
+      <Head>
+        <title>BLACK2b - CryptoBox密码工具箱</title>
+      </Head>
       <div style={{ marginBottom: "24px" }}>
         <h1>BLAKE2b</h1>
       </div>
@@ -98,7 +102,7 @@ export default function BLAKE2b() {
             value={result.hash}
           />
           <div style={{ marginTop: "8px" }}>
-            中间值：{result.bytes.length > 0 && result.bytes}
+            中间值: {result.bytes.length > 0 && result.bytes}
           </div>
         </Form.Item>
         <Form.Item>

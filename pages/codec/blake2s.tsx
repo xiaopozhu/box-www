@@ -1,15 +1,7 @@
 import { request } from "@/utils/request";
-import {
-  Divider,
-  Form,
-  Input,
-  Button,
-  Radio,
-  Space,
-  message,
-  InputNumber,
-} from "antd";
+import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
 import { useState } from "react";
+import Head from "next/head";
 
 const { TextArea } = Input;
 
@@ -48,6 +40,9 @@ export default function BLAKE2s() {
 
   return (
     <>
+      <Head>
+        <title>BLAKE2s - CryptoBox密码工具箱</title>
+      </Head>
       <div style={{ marginBottom: "24px" }}>
         <h1>BLAKE2s</h1>
       </div>
@@ -86,7 +81,7 @@ export default function BLAKE2s() {
             value={result.hash}
           />
           <div style={{ marginTop: "8px" }}>
-            中间值：{result.bytes.length > 0 && result.bytes}
+            中间值: {result.bytes.length > 0 && result.bytes}
           </div>
         </Form.Item>
         <Form.Item>

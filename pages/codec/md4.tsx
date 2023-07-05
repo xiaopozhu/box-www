@@ -1,6 +1,7 @@
 import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Radio, message } from "antd";
 import { useState } from "react";
+import Head from "next/head";
 
 const { TextArea } = Input;
 
@@ -30,6 +31,9 @@ export default function MD4() {
 
   return (
     <>
+      <Head>
+        <title>MD4 - CryptoBox密码工具箱</title>
+      </Head>
       <div style={{ marginBottom: "24px" }}>
         <h1>MD4</h1>
       </div>
@@ -65,7 +69,7 @@ export default function MD4() {
             value={result.hash}
           />
           <div style={{ marginTop: "8px" }}>
-            中间值：{result.bytes.length > 0 && result.bytes}
+            中间值: {result.bytes.length > 0 && result.bytes}
           </div>
         </Form.Item>
         <Form.Item>

@@ -108,7 +108,7 @@ export default function Home(props: any) {
   return (
     <div style={{ textAlign: "center" }}>
       <Head>
-        <title>CryptoBox密码工具箱, 您的密码学助手</title>
+        <title>CryptoBox密码工具箱, 您的密码学助手, 在线密码工具</title>
       </Head>
       <h1>快速搜索工具</h1>
       <Select

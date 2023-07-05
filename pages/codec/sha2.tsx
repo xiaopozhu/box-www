@@ -1,6 +1,7 @@
 import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
 import { useState } from "react";
+import Head from "next/head";
 
 const { TextArea } = Input;
 
@@ -39,6 +40,9 @@ export default function SHA2() {
 
   return (
     <>
+      <Head>
+        <title>SHA256/SHA384/SHA512 - CryptoBox密码工具箱</title>
+      </Head>
       <div style={{ marginBottom: "24px" }}>
         <h1>SHA2</h1>
       </div>
@@ -69,7 +73,7 @@ export default function SHA2() {
             value={result.hash}
           />
           <div style={{ marginTop: "8px" }}>
-            中间值：{result.bytes.length > 0 && result.bytes}
+            中间值: {result.bytes.length > 0 && result.bytes}
           </div>
         </Form.Item>
         <Form.Item>
