@@ -1,5 +1,14 @@
 import { request } from "@/utils/request";
-import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
+import {
+  Divider,
+  Form,
+  Input,
+  Button,
+  Radio,
+  Space,
+  message,
+  InputNumber,
+} from "antd";
 import { useState } from "react";
 
 const { TextArea } = Input;
@@ -9,7 +18,7 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function SHA2() {
+export default function BLAKE2s() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState({ hash: "", bytes: "" });
@@ -20,7 +29,7 @@ export default function SHA2() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/sha2", {
+        request("/api/v1/codec/blake2s", {
           method: "POST",
           body: JSON.stringify({ ...values, size: s }),
         })
@@ -40,7 +49,7 @@ export default function SHA2() {
   return (
     <>
       <div style={{ marginBottom: "24px" }}>
-        <h1>SHA2</h1>
+        <h1>BLAKE2s</h1>
       </div>
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item
@@ -49,6 +58,14 @@ export default function SHA2() {
           rules={[{ required: true }, { type: "string", min: 1 }]}
         >
           <TextArea placeholder="待计算字符串" rows={4} />
+        </Form.Item>
+        <Form.Item
+          label="可选密钥"
+          name="key"
+          rules={[{ type: "string", min: 1 }]}
+          tooltip={"密钥长度在0-32Byte"}
+        >
+          <TextArea placeholder="密钥字符串, 编码与待计算值相同" rows={1} />
         </Form.Item>
         <Form.Item
           label="字符格式"
@@ -74,14 +91,12 @@ export default function SHA2() {
         </Form.Item>
         <Form.Item>
           <Space>
-            <Button type="primary" onClick={(e) => onFinish(e, "256")}>
-              SHA-256
+            <Button type="primary" onClick={(e) => onFinish(e, "128")}>
+              BLAKE2s-128
             </Button>
-            <Button onClick={(e) => onFinish(e, "224")}>SHA-224</Button>
-            <Button onClick={(e) => onFinish(e, "384")}>SHA-384</Button>
-            <Button onClick={(e) => onFinish(e, "512")}>SHA-512</Button>
-            <Button onClick={(e) => onFinish(e, "512/224")}>SHA-512/224</Button>
-            <Button onClick={(e) => onFinish(e, "512/256")}>SHA-512/256</Button>
+            <Button type="primary" onClick={(e) => onFinish(e, "256")}>
+              BLAKE2s-256
+            </Button>
           </Space>
         </Form.Item>
       </Form>

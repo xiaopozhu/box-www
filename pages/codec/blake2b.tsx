@@ -1,5 +1,14 @@
 import { request } from "@/utils/request";
-import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
+import {
+  Divider,
+  Form,
+  Input,
+  Button,
+  Radio,
+  Space,
+  message,
+  InputNumber,
+} from "antd";
 import { useState } from "react";
 
 const { TextArea } = Input;
@@ -9,20 +18,20 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function SHA2() {
+export default function BLAKE2b() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState({ hash: "", bytes: "" });
 
-  const onFinish = (e: any, s: string) => {
+  const onFinish = (e: any) => {
     e.preventDefault();
 
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/sha2", {
+        request("/api/v1/codec/blake2b", {
           method: "POST",
-          body: JSON.stringify({ ...values, size: s }),
+          body: JSON.stringify({ ...values }),
         })
           .then((resp) => {
             if (resp.code !== 0) return message.error(resp.error);
@@ -37,10 +46,14 @@ export default function SHA2() {
       });
   };
 
+  const normalizeSize = (val: any) => {
+    return val.toString();
+  };
+
   return (
     <>
       <div style={{ marginBottom: "24px" }}>
-        <h1>SHA2</h1>
+        <h1>BLAKE2b</h1>
       </div>
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item
@@ -49,6 +62,22 @@ export default function SHA2() {
           rules={[{ required: true }, { type: "string", min: 1 }]}
         >
           <TextArea placeholder="待计算字符串" rows={4} />
+        </Form.Item>
+        <Form.Item
+          label="计算长度"
+          name="size"
+          rules={[{ required: true }]}
+          initialValue={"256"}
+          normalize={normalizeSize}
+        >
+          <InputNumber max={512} min={8} step={8} />
+        </Form.Item>
+        <Form.Item
+          label="可选密钥"
+          name="key"
+          rules={[{ type: "string", min: 1 }]}
+        >
+          <TextArea placeholder="密钥字符串, 编码与待计算值相同" rows={1} />
         </Form.Item>
         <Form.Item
           label="字符格式"
@@ -74,14 +103,9 @@ export default function SHA2() {
         </Form.Item>
         <Form.Item>
           <Space>
-            <Button type="primary" onClick={(e) => onFinish(e, "256")}>
-              SHA-256
+            <Button type="primary" onClick={(e) => onFinish(e)}>
+              BLAKE2b
             </Button>
-            <Button onClick={(e) => onFinish(e, "224")}>SHA-224</Button>
-            <Button onClick={(e) => onFinish(e, "384")}>SHA-384</Button>
-            <Button onClick={(e) => onFinish(e, "512")}>SHA-512</Button>
-            <Button onClick={(e) => onFinish(e, "512/224")}>SHA-512/224</Button>
-            <Button onClick={(e) => onFinish(e, "512/256")}>SHA-512/256</Button>
           </Space>
         </Form.Item>
       </Form>

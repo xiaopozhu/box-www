@@ -1,5 +1,5 @@
 import { request } from "@/utils/request";
-import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
+import { Divider, Form, Input, Button, Radio, message } from "antd";
 import { useState } from "react";
 
 const { TextArea } = Input;
@@ -9,40 +9,36 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function SHA2() {
+export default function CRC32() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState({ hash: "", bytes: "" });
 
-  const onFinish = (e: any, s: string) => {
-    e.preventDefault();
-
-    form
-      .validateFields()
-      .then((values) => {
-        request("/api/v1/codec/sha2", {
-          method: "POST",
-          body: JSON.stringify({ ...values, size: s }),
-        })
-          .then((resp) => {
-            if (resp.code !== 0) return message.error(resp.error);
-            setResult(resp.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+  const onFinish = (values: any) => {
+    request("/api/v1/codec/crc32", {
+      method: "POST",
+      body: JSON.stringify(values),
+    })
+      .then((resp) => {
+        if (resp.code !== 0) return message.error(resp.error);
+        setResult(resp.data);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   };
 
   return (
     <>
       <div style={{ marginBottom: "24px" }}>
-        <h1>SHA2</h1>
+        <h1>CRC32</h1>
       </div>
-      <Form {...formItemLayout} form={form} layout="vertical">
+      <Form
+        {...formItemLayout}
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+      >
         <Form.Item
           label="待计算值"
           name="text"
@@ -73,16 +69,9 @@ export default function SHA2() {
           </div>
         </Form.Item>
         <Form.Item>
-          <Space>
-            <Button type="primary" onClick={(e) => onFinish(e, "256")}>
-              SHA-256
-            </Button>
-            <Button onClick={(e) => onFinish(e, "224")}>SHA-224</Button>
-            <Button onClick={(e) => onFinish(e, "384")}>SHA-384</Button>
-            <Button onClick={(e) => onFinish(e, "512")}>SHA-512</Button>
-            <Button onClick={(e) => onFinish(e, "512/224")}>SHA-512/224</Button>
-            <Button onClick={(e) => onFinish(e, "512/256")}>SHA-512/256</Button>
-          </Space>
+          <Button type="primary" htmlType="submit">
+            CRC32
+          </Button>
         </Form.Item>
       </Form>
       <Divider />
