@@ -50,13 +50,15 @@ export default function Layout(props: Props) {
       <div className={styles.container}>
         <header className={styles.menu}>
           <div>
-            <div className={styles.avatarContainer}>
-              {profile ? (
-                <Avatar size={120} src={profile.avatar} />
-              ) : (
-                <Avatar size={120} src="/default.png" />
-              )}
-            </div>
+            <Link href="/">
+              <div className={styles.avatarContainer}>
+                {profile ? (
+                  <Avatar size={120} src={profile.avatar} />
+                ) : (
+                  <Avatar size={120} src="/default.png" />
+                )}
+              </div>
+            </Link>
             <h1 className={styles.menuTitle}>你好，游客</h1>
 
             <nav className={styles.menuNav}>
