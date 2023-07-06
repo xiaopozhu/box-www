@@ -4,11 +4,17 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: 'http://localhost:9000/api/:path*',
+        source: "/api/:path*",
+        destination: "http://localhost:9000/api/:path*",
       },
     ];
   },
-}
 
-module.exports = nextConfig
+  // 环境变量配置
+  env: {
+    API_HOST:
+      process.env.NODE_ENV === "production" ? "https://api.deepzz.com" : "",
+  },
+};
+
+module.exports = nextConfig;
