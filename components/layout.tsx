@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import { Avatar } from "antd";
 import {
-  AntDesignOutlined,
   LogoutOutlined,
   SettingOutlined,
   LoginOutlined,
