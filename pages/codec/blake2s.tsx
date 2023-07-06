@@ -55,14 +55,6 @@ export default function BLAKE2s() {
           <TextArea placeholder="待计算字符串" rows={4} />
         </Form.Item>
         <Form.Item
-          label="可选密钥"
-          name="key"
-          rules={[{ type: "string", min: 1 }]}
-          tooltip={"密钥长度在0-32Byte"}
-        >
-          <TextArea placeholder="密钥字符串, 编码与待计算值相同" rows={1} />
-        </Form.Item>
-        <Form.Item
           label="字符格式"
           name="encoding"
           required
@@ -73,6 +65,14 @@ export default function BLAKE2s() {
             <Radio value="hex">Hex</Radio>
             <Radio value="base64">Base64</Radio>
           </Radio.Group>
+        </Form.Item>
+        <Form.Item
+          label="可选密钥"
+          name="key"
+          rules={[{ type: "string", min: 1 }]}
+          tooltip={"目前仅支持明文密钥, 密钥长度在0-32Byte"}
+        >
+          <TextArea placeholder="密钥字符串, 仅支持明文密钥" rows={1} />
         </Form.Item>
         <Form.Item
           label={

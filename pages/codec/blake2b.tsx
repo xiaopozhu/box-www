@@ -23,7 +23,7 @@ const formItemLayout = {
 export default function BLAKE2b() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({encoding:'', hash: "", bytes: "" });
+  const [result, setResult] = useState({ encoding: "", hash: "", bytes: "" });
 
   const onFinish = (e: any) => {
     e.preventDefault();
@@ -78,13 +78,6 @@ export default function BLAKE2b() {
           <InputNumber max={512} min={8} step={8} />
         </Form.Item>
         <Form.Item
-          label="可选密钥"
-          name="key"
-          rules={[{ type: "string", min: 1 }]}
-        >
-          <TextArea placeholder="密钥字符串, 编码与待计算值相同" rows={1} />
-        </Form.Item>
-        <Form.Item
           label="字符格式"
           name="encoding"
           required
@@ -96,17 +89,23 @@ export default function BLAKE2b() {
             <Radio value="base64">Base64</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label={
+        <Form.Item
+          label="可选密钥"
+          name="key"
+          rules={[{ type: "string", min: 1 }]}
+          tooltip="目前仅支持明文密钥"
+        >
+          <TextArea placeholder="密钥字符串, 仅支持明文" rows={1} />
+        </Form.Item>
+        <Form.Item
+          label={
             <>
               计算结果
               {result.encoding && <Tag color="red">{result.encoding}</Tag>}
             </>
-          }>
-          <TextArea
-            placeholder="编码结果"
-            rows={4}
-            value={result.hash}
-          />
+          }
+        >
+          <TextArea placeholder="编码结果" rows={4} value={result.hash} />
           <div style={{ marginTop: "8px" }}>
             中间值: {result.bytes.length > 0 && result.bytes}
           </div>
