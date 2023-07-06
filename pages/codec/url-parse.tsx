@@ -10,10 +10,19 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
+interface urlResult {
+  scheme: string;
+  user: string;
+  host: string;
+  path: string;
+  rawQuery: string;
+  fragment: string;
+}
+
 export default function URLParse() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({
+  const [result, setResult] = useState<urlResult>({
     scheme: "",
     user: "",
     host: "",
@@ -63,12 +72,20 @@ export default function URLParse() {
         </Form.Item>
         <Form.Item label="计算结果">
           <List size="small">
-            <List.Item>Scheme: {result.scheme}</List.Item>
-            <List.Item>User: {result.user}</List.Item>
-            <List.Item>Host: {result.host}</List.Item>
-            <List.Item>Path: {result.path}</List.Item>
-            <List.Item>RawQuery: {result.rawQuery}</List.Item>
-            <List.Item>Fragment: {result.fragment}</List.Item>
+            {Object.keys(result).map((k) => (
+              <List.Item key={k}>
+                <small
+                  style={{
+                    display: "inline-block",
+                    minWidth: "70px",
+                    textAlign: "right",
+                  }}
+                >
+                  {k.toUpperCase()}:
+                </small>{" "}
+                {(result as any)[k]}
+              </List.Item>
+            ))}
           </List>
         </Form.Item>
         <Form.Item>
