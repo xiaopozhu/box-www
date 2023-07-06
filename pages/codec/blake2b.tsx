@@ -8,6 +8,7 @@ import {
   Space,
   message,
   InputNumber,
+  Tag,
 } from "antd";
 import { useState } from "react";
 import Head from "next/head";
@@ -22,7 +23,7 @@ const formItemLayout = {
 export default function BLAKE2b() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ hash: "", bytes: "" });
+  const [result, setResult] = useState({encoding:'', hash: "", bytes: "" });
 
   const onFinish = (e: any) => {
     e.preventDefault();
@@ -87,17 +88,22 @@ export default function BLAKE2b() {
           label="字符格式"
           name="encoding"
           required
-          initialValue={"plain"}
+          initialValue={"plaintext"}
         >
           <Radio.Group>
-            <Radio value="plain">明文</Radio>
+            <Radio value="plaintext">明文</Radio>
             <Radio value="hex">Hex</Radio>
             <Radio value="base64">Base64</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label="计算结果">
+        <Form.Item label={
+            <>
+              计算结果
+              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+            </>
+          }>
           <TextArea
-            placeholder="十六进制结果 (Hex)"
+            placeholder="编码结果"
             rows={4}
             value={result.hash}
           />

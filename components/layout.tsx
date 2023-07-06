@@ -55,7 +55,7 @@ export default function Layout(props: Props) {
               {profile ? (
                 <Avatar size={120} src={profile.avatar} />
               ) : (
-                <Avatar size={120} icon={<AntDesignOutlined />} />
+                <Avatar size={120} src="/default.png" />
               )}
             </div>
             <h1 className={styles.menuTitle}>你好，游客</h1>

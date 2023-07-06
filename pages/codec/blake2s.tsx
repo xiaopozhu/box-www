@@ -1,5 +1,5 @@
 import { request } from "@/utils/request";
-import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
+import { Divider, Form, Input, Button, Radio, Space, message, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
 
@@ -13,7 +13,7 @@ const formItemLayout = {
 export default function BLAKE2s() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ hash: "", bytes: "" });
+  const [result, setResult] = useState({ encoding: "", hash: "", bytes: "" });
 
   const onFinish = (e: any, s: string) => {
     e.preventDefault();
@@ -66,20 +66,23 @@ export default function BLAKE2s() {
           label="字符格式"
           name="encoding"
           required
-          initialValue={"plain"}
+          initialValue={"plaintext"}
         >
           <Radio.Group>
-            <Radio value="plain">明文</Radio>
+            <Radio value="plaintext">明文</Radio>
             <Radio value="hex">Hex</Radio>
             <Radio value="base64">Base64</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label="计算结果">
-          <TextArea
-            placeholder="十六进制结果 (Hex)"
-            rows={4}
-            value={result.hash}
-          />
+        <Form.Item
+          label={
+            <>
+              计算结果
+              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+            </>
+          }
+        >
+          <TextArea placeholder="编码结果" rows={4} value={result.hash} />
           <div style={{ marginTop: "8px" }}>
             中间值: {result.bytes.length > 0 && result.bytes}
           </div>
@@ -89,9 +92,7 @@ export default function BLAKE2s() {
             <Button type="primary" onClick={(e) => onFinish(e, "128")}>
               BLAKE2s-128
             </Button>
-            <Button type="primary" onClick={(e) => onFinish(e, "256")}>
-              BLAKE2s-256
-            </Button>
+            <Button onClick={(e) => onFinish(e, "256")}>BLAKE2s-256</Button>
           </Space>
         </Form.Item>
       </Form>

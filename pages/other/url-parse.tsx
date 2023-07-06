@@ -37,7 +37,7 @@ export default function URLParse() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/url-parse", {
+        request("/api/v1/other/url-parse", {
           method: "POST",
           body: JSON.stringify({ ...values }),
         })
@@ -68,9 +68,9 @@ export default function URLParse() {
           name="text"
           rules={[{ required: true }, { type: "string", min: 1 }]}
         >
-          <TextArea placeholder="待处理字符串" rows={2} />
+          <TextArea placeholder="[scheme:][//[userinfo@]host][/]path[?query][#fragment]" rows={2} />
         </Form.Item>
-        <Form.Item label="计算结果">
+        <Form.Item label="处理结果">
           <List size="small">
             {Object.keys(result).map((k) => (
               <List.Item key={k}>
@@ -81,8 +81,8 @@ export default function URLParse() {
                     textAlign: "right",
                   }}
                 >
-                  {k.toUpperCase()}:
-                </small>{" "}
+                  {k.toUpperCase()}
+                </small>{" : "}
                 {(result as any)[k]}
               </List.Item>
             ))}

@@ -1,5 +1,5 @@
 import { request } from "@/utils/request";
-import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
+import { Divider, Form, Input, Button, Radio, Space, message, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
 
@@ -13,7 +13,7 @@ const formItemLayout = {
 export default function Base64() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ text: "", bytes: "" });
+  const [result, setResult] = useState({ encoding: "", text: "", bytes: "" });
   const [type, setType] = useState("encode");
 
   const onFinish = (e: any, et: string) => {
@@ -53,7 +53,7 @@ export default function Base64() {
             onChange={(v) => {
               setType(v.target.value);
               form.resetFields();
-              setResult({ text: "", bytes: "" });
+              setResult({ encoding: "", text: "", bytes: "" });
             }}
             defaultValue={type}
           >
@@ -73,16 +73,22 @@ export default function Base64() {
             label="字符格式"
             name="encoding"
             required
-            initialValue={"plain"}
+            initialValue={"plaintext"}
           >
             <Radio.Group>
-              <Radio value="plain">明文</Radio>
+              <Radio value="plaintext">明文</Radio>
               <Radio value="hex">Hex</Radio>
-              <Radio value="base64">Base64</Radio>
             </Radio.Group>
           </Form.Item>
         )}
-        <Form.Item label="计算结果">
+        <Form.Item
+          label={
+            <>
+              计算结果
+              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+            </>
+          }
+        >
           <TextArea
             placeholder={type === "encode" ? "编码结果" : "解码结果"}
             rows={4}
@@ -97,9 +103,7 @@ export default function Base64() {
             <Button type="primary" onClick={(e) => onFinish(e, "std")}>
               Base64 标准
             </Button>
-            <Button type="primary" onClick={(e) => onFinish(e, "url")}>
-              Base64 URL
-            </Button>
+            <Button onClick={(e) => onFinish(e, "url")}>Base64 URL</Button>
           </Space>
         </Form.Item>
       </Form>

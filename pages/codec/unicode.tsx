@@ -1,5 +1,5 @@
 import { request } from "@/utils/request";
-import { Divider, Form, Input, Button, Radio, Space, message } from "antd";
+import { Divider, Form, Input, Button, Radio, Space, message, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
 
@@ -13,7 +13,7 @@ const formItemLayout = {
 export default function Unicode() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ text: "", bytes: "" });
+  const [result, setResult] = useState({ encoding: "", text: "", bytes: "" });
   const [type, setType] = useState("encode");
 
   const onFinish = (e: any) => {
@@ -53,7 +53,7 @@ export default function Unicode() {
             onChange={(v) => {
               setType(v.target.value);
               form.resetFields();
-              setResult({ text: "", bytes: "" });
+              setResult({ encoding: "", text: "", bytes: "" });
             }}
             defaultValue={type}
           >
@@ -68,7 +68,14 @@ export default function Unicode() {
         >
           <TextArea placeholder="待处理字符串" rows={4} />
         </Form.Item>
-        <Form.Item label="计算结果">
+        <Form.Item
+          label={
+            <>
+              计算结果
+              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+            </>
+          }
+        >
           <TextArea
             placeholder={type === "encode" ? "编码结果" : "解码结果"}
             rows={4}
