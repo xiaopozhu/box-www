@@ -6,9 +6,17 @@ export default function Footer() {
       <div>Copyright © deepzz0 CryptoBox.</div>
       <div>
         <a
+          href="https://status.deepzz.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Status Page
+        </a>
+        <a
           href="https://github.com/deepzz0/cryptobox"
           target="_blank"
           rel="noopener noreferrer"
+          style={{ marginLeft: "2rem" }}
         >
           开放文档
         </a>
@@ -21,7 +29,7 @@ export default function Footer() {
           GitHub
         </a>
         <a
-          href="mailto: hello@deepzz.com"
+          href="mailto: me@deepzz.com"
           target="_blank"
           rel="noopener noreferrer"
           style={{ marginLeft: "2rem" }}
