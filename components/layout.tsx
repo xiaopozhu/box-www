@@ -52,11 +52,7 @@ export default function Layout(props: Props) {
           <div>
             <Link href="/">
               <div className={styles.avatarContainer}>
-                {profile ? (
-                  <Avatar size={120} src={profile.avatar} />
-                ) : (
-                  <Avatar size={120} src="/default.png" />
-                )}
+                <Avatar size={130} src={profile?.avatar || "/avatar.png"} />
               </div>
             </Link>
             <h1 className={styles.menuTitle}>你好，游客</h1>
