@@ -13,12 +13,12 @@ export default function Footer() {
           Status Page
         </a>
         <a
-          href="https://github.com/deepzz0/cryptobox"
+          href="https://api.deepzz.com/docs/index.html"
           target="_blank"
           rel="noopener noreferrer"
           style={{ marginLeft: "2rem" }}
         >
-          开放文档
+          API文档
         </a>
         <a
           href="https://github.com/deepzz0/cryptobox"
