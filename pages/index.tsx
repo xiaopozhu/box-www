@@ -8,6 +8,7 @@ import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { request } from "@/utils/request";
 
 import styles from "@/styles/content.module.css";
+import boxesData from "./boxes.json";
 
 let timeout: ReturnType<typeof setTimeout> | null;
 let currentValue: string;
@@ -15,27 +16,59 @@ let currentValue: string;
 interface boxInfo {
   id: string;
   title: string;
-  cards: any[];
+  cards: card[];
+}
+
+interface card {
+  id: string;
+  name: string;
+  icon: string;
+  desc: string;
+  path: string;
+  tags: string[];
+  boxID: string;
+  isFavorite: boolean;
 }
 
 export default function Home(props: any) {
   const { profile } = props;
 
-  const [boxs, setBoxs] = useState<boxInfo[]>([]);
+  const [boxes, setBoxes] = useState<boxInfo[]>([]);
   const [value, setValue] = useState<string>();
   const [data, setData] = useState<SelectProps["options"]>([]);
 
   useEffect(() => {
-    handleFetchBoxs();
-  }, []);
+    if (profile) {
+      handleFetchMybox();
+    } else {
+      setBoxes(boxesData as boxInfo[]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile]);
 
-  const handleFetchBoxs = () => {
-    request("/api/v1/boxs", {
+  const handleFetchMybox = () => {
+    request("/api/v1/user/mybox", {
       method: "GET",
     }).then((resp) => {
-      if (resp.code === 0) {
-        setBoxs(resp.data);
-      }
+      const infos = boxesData as boxInfo[];
+      infos[0].cards = [];
+      const favorites: card[] = [];
+      const temp = infos.map((info) => {
+        if (info.cards) {
+          info.cards = info.cards.map((item) => {
+            for (let id of resp.data.list) {
+              if (id === item.id) {
+                item.isFavorite = true;
+                favorites.push(item);
+              }
+            }
+            return item;
+          });
+        }
+        return info;
+      });
+      temp[0].cards = favorites;
+      setBoxes(temp);
     });
   };
 
@@ -48,10 +81,7 @@ export default function Home(props: any) {
     const fake = () => {
       if (currentValue === newValue) {
         const temp: SelectProps["options"] = [];
-        boxs.forEach((box) => {
-          if (box.id === "mybox") {
-            return;
-          }
+        boxes.forEach((box) => {
           if (box.cards) {
             box.cards.forEach((item) => {
               let ok = item.id.includes(newValue);
@@ -100,7 +130,7 @@ export default function Home(props: any) {
       if (resp.code !== 0) {
         message.error(resp.error);
       } else {
-        handleFetchBoxs();
+        handleFetchMybox();
       }
     });
   };
@@ -128,14 +158,14 @@ export default function Home(props: any) {
         size="large"
       />
       <div style={{ textAlign: "left" }}>
-        {boxs.map((box) => {
+        {boxes.map((box) => {
           return (
             <div style={{ marginTop: "40px" }} key={box.id}>
               <h3 id={box.id} className={styles.customH3}>
                 {box.title}
               </h3>
               <Row gutter={16}>
-                {box.cards ? (
+                {box.cards.length > 0 ? (
                   box.cards.map((item) => {
                     return (
                       <Col
@@ -177,7 +207,7 @@ export default function Home(props: any) {
                     );
                   })
                 ) : (
-                  <Col>无</Col>
+                  <Col>{profile ? "无" : "未登录"}</Col>
                 )}
               </Row>
             </div>

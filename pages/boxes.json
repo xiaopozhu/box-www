@@ -1,0 +1,207 @@
+[
+  {
+    "id": "mybox",
+    "title": "我的工具箱",
+    "cards": []
+  },
+  {
+    "id": "codec",
+    "title": "字符编解码",
+    "cards": [
+      {
+        "id": "hmac",
+        "name": "HMAC",
+        "icon": "/default.png",
+        "desc": "基于哈希函数的认证码，用密钥验证消息完整性和真实性，增加数据安全性。",
+        "path": "/codec/hmac",
+        "tags": [
+          "hamc-md5",
+          "hmac-sha1",
+          "hmac-sha256",
+          "hmac-sha512",
+          "hmac-sm3"
+        ]
+      },
+      {
+        "id": "md4",
+        "name": "MD4",
+        "icon": "/default.png",
+        "desc": "用于生成128位（16字节）的消息摘要，常用于数据完整性校验。安全性低。",
+        "path": "/codec/md4",
+        "tags": null
+      },
+      {
+        "id": "md5",
+        "name": "MD5",
+        "icon": "/default.png",
+        "desc": "用于生成128位（16字节）的摘要，常用于数据校验和密码存储。不安全。",
+        "path": "/codec/md5",
+        "tags": null
+      },
+      {
+        "id": "sha1",
+        "name": "SHA1",
+        "icon": "/default.png",
+        "desc": "生成160位（20字节）的摘要，常用于数字签名和数据完整性校验。安全性低。",
+        "path": "/codec/sha1",
+        "tags": null
+      },
+      {
+        "id": "sha2",
+        "name": "SHA2",
+        "icon": "/default.png",
+        "desc": "如SHA224、SHA256、SHA384和SHA512，用于数据完整性校验和密码存储。推荐使用。",
+        "path": "/codec/sha2",
+        "tags": ["sha256", "sha384", "sha512", "sha512_224", "sha512_256"]
+      },
+      {
+        "id": "sha3",
+        "name": "SHA3",
+        "icon": "/default.png",
+        "desc": "最新的散列函数，用于生成不同长度的摘要，提供较高的安全性和抗碰撞能力。推荐使用。",
+        "path": "/codec/sha3",
+        "tags": ["sha3-224", "sha3-256", "sha3-384", "sha3-512"]
+      },
+      {
+        "id": "sm3",
+        "name": "SM3",
+        "icon": "/default.png",
+        "desc": "生成256位（32字节）的摘要，被广泛应用于中国密码学标准和密码应用。推荐使用。",
+        "path": "/codec/sm3",
+        "tags": null
+      },
+      {
+        "id": "crc32",
+        "name": "CRC32",
+        "icon": "/default.png",
+        "desc": "生成32位（4字节）的校验和，常用于数据完整性校验和错误检测。安全性低。",
+        "path": "/codec/crc32",
+        "tags": null
+      },
+      {
+        "id": "blake2b",
+        "name": "BLAKE2b",
+        "icon": "/default.png",
+        "desc": "生成不同长度的摘要，具有较低的碰撞概率和高效率的计算能力。推荐使用。",
+        "path": "/codec/blake2b",
+        "tags": null
+      },
+      {
+        "id": "blake2s",
+        "name": "BLAKE2s",
+        "icon": "/default.png",
+        "desc": "生成不同长度的摘要，适用于资源受限的环境和嵌入式设备。推荐使用。",
+        "path": "/codec/blake2s",
+        "tags": null
+      },
+      {
+        "id": "base32",
+        "name": "Base32",
+        "icon": "/default.png",
+        "desc": "将数据以A-Z2-7的方式进行编码，常用于电子邮件和标识符的表示。安全性低。",
+        "path": "/codec/base32",
+        "tags": null
+      },
+      {
+        "id": "base64",
+        "name": "Base64",
+        "icon": "/default.png",
+        "desc": "将数据A-Za-z0-9+/的方式进行编码，常用于数据传输和存储。安全性低。",
+        "path": "/codec/base64",
+        "tags": null
+      },
+      {
+        "id": "hex",
+        "name": "Hex",
+        "icon": "/default.png",
+        "desc": "将数据以十六进制进行编码，常用于二进制数据的可视化和存储。安全性低。",
+        "path": "/codec/hex",
+        "tags": null
+      },
+      {
+        "id": "unicode",
+        "name": "Unicode",
+        "icon": "/default.png",
+        "desc": "一种字符编码方案，用于表示世界上几乎所有的字符，包括不同语言的文字和符号。",
+        "path": "/codec/unicode",
+        "tags": null
+      },
+      {
+        "id": "url",
+        "name": "URL",
+        "icon": "/default.png",
+        "desc": "URL中的特殊字符转换为%xx的形式进行传输和处理，以确保URL的正确性和完整性。",
+        "path": "/codec/url",
+        "tags": null
+      }
+    ]
+  },
+  {
+    "id": "crypto",
+    "title": "对称加解密",
+    "cards": [
+      {
+        "id": "aes",
+        "name": "AES",
+        "icon": "/default.png",
+        "desc": "一种常用的对称加密算法，具有高度的安全性和性能，适用于保护敏感信息的加密和解密。",
+        "path": "/crypto/aes",
+        "tags": ["aes-cbc", "aes-cfb", "aes-ctr", "aes-gcm", "aes-ofb"]
+      },
+      {
+        "id": "des",
+        "name": "DES",
+        "icon": "/default.png",
+        "desc": "一种对称加密算法，采用64位密钥进行加密和解密，适用于简单的数据保护需求。",
+        "path": "/crypto/des",
+        "tags": ["des-cbc"]
+      },
+      {
+        "id": "3des",
+        "name": "3DES",
+        "icon": "/default.png",
+        "desc": "一种对称加密算法，通过多次DES算法的迭代，提供更高的安全性和强大的加密能力。",
+        "path": "/crypto/3des",
+        "tags": ["3des-cbc"]
+      },
+      {
+        "id": "rc4",
+        "name": "RC4",
+        "icon": "/default.png",
+        "desc": "一种流密码算法，通过生成伪随机流来加密和解密数据，适用于快速加密和解密操作。",
+        "path": "/crypto/rc4",
+        "tags": null
+      },
+      {
+        "id": "sm4",
+        "name": "SM4",
+        "icon": "/default.png",
+        "desc": "一种对称加密算法，采用64位密钥进行加密和解密，适用于简单的数据保护需求。",
+        "path": "/crypto/sm4",
+        "tags": null
+      }
+    ]
+  },
+  {
+    "id": "other",
+    "title": "实验小工具",
+    "cards": [
+      {
+        "id": "url-parse",
+        "name": "URL解析",
+        "icon": "/default.png",
+        "desc": "将URL解析拆分",
+        "path": "/other/url-parse",
+        "tags": null
+      },
+      {
+        "id": "cny2cn",
+        "name": "CNY2CN",
+        "icon": "/default.png",
+        "desc": "将金额转换为人民币大写, 如: 100.20 => 壹佰元贰角",
+        "path": "/other/cny2cn",
+        "tags": null
+      }
+    ]
+  }
+]
