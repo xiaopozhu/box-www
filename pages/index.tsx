@@ -33,15 +33,13 @@ interface card {
 export default function Home(props: any) {
   const { profile } = props;
 
-  const [boxes, setBoxes] = useState<boxInfo[]>([]);
+  const [boxes, setBoxes] = useState<boxInfo[]>(boxesData as boxInfo[]);
   const [value, setValue] = useState<string>();
   const [data, setData] = useState<SelectProps["options"]>([]);
 
   useEffect(() => {
     if (profile) {
       handleFetchMybox();
-    } else {
-      setBoxes(boxesData as boxInfo[]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
