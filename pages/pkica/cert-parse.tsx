@@ -101,33 +101,35 @@ export default function CertParse() {
             onChange={(e) => setPaste(e.target.value)}
             rows={8}
           />
-          <div
-            style={{
-              position: "absolute",
-              transform: "translate(-50%, -50%)",
-              top: "50%",
-              left: "50%",
-            }}
-          >
-            <Upload
-              onChange={(info) => {
-                if (!info.file.status) setFile(info.file);
+          {!paste && (
+            <div
+              style={{
+                position: "absolute",
+                transform: "translate(-50%, -50%)",
+                top: "50%",
+                left: "50%",
               }}
-              beforeUpload={() => false}
-              maxCount={1}
-              onRemove={() => setFile(undefined)}
             >
-              <Button icon={<UploadOutlined />}>上传文件</Button>
-            </Upload>
-          </div>
+              <Upload
+                onChange={(info) => {
+                  if (!info.file.status) setFile(info.file);
+                }}
+                beforeUpload={() => false}
+                maxCount={1}
+                onRemove={() => setFile(undefined)}
+              >
+                <Button icon={<UploadOutlined />}>上传文件</Button>
+              </Upload>
+            </div>
+          )}
         </Form.Item>
         <Form.Item>
           <Button type="primary" onClick={(e) => onFinish(e)}>
             CERT解析
           </Button>
         </Form.Item>
-        <Form.Item label="处理结果">
-          {info && (
+        {info && (
+          <Form.Item label="处理结果">
             <List size="small">
               {Object.keys(info).map((k) => (
                 <List.Item key={k}>
@@ -145,8 +147,8 @@ export default function CertParse() {
                 </List.Item>
               ))}
             </List>
-          )}
-        </Form.Item>
+          </Form.Item>
+        )}
       </Form>
       <Divider />
     </>

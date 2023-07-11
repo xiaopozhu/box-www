@@ -71,8 +71,8 @@ export default function URLParse() {
             URL解析
           </Button>
         </Form.Item>
-        <Form.Item label="处理结果">
-          {result && (
+        {result && (
+          <Form.Item label="处理结果">
             <List size="small">
               {Object.keys(result).map((k) => (
                 <List.Item key={k}>
@@ -90,8 +90,8 @@ export default function URLParse() {
                 </List.Item>
               ))}
             </List>
-          )}
-        </Form.Item>
+          </Form.Item>
+        )}
       </Form>
       <Divider />
     </>

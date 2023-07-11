@@ -2,6 +2,8 @@ import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Radio, Space, message, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
+import { hashInfo } from "@/model/model";
+import CopyBtn from "@/components/button";
 
 const { TextArea } = Input;
 
@@ -13,7 +15,7 @@ const formItemLayout = {
 export default function BLAKE2s() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ encoding: "", hash: "", bytes: "" });
+  const [result, setResult] = useState<hashInfo>();
 
   const onFinish = (e: any, s: string) => {
     e.preventDefault();
@@ -74,19 +76,6 @@ export default function BLAKE2s() {
         >
           <TextArea placeholder="密钥字符串, 仅支持明文密钥" rows={1} />
         </Form.Item>
-        <Form.Item
-          label={
-            <>
-              计算结果
-              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
-            </>
-          }
-        >
-          <TextArea placeholder="编码结果" rows={4} value={result.hash} />
-          <div style={{ marginTop: "8px" }}>
-            中间值: {result.bytes.length > 0 && result.bytes}
-          </div>
-        </Form.Item>
         <Form.Item>
           <Space>
             <Button type="primary" onClick={(e) => onFinish(e, "128")}>
@@ -95,6 +84,21 @@ export default function BLAKE2s() {
             <Button onClick={(e) => onFinish(e, "256")}>BLAKE2s-256</Button>
           </Space>
         </Form.Item>
+        {result && (
+          <Form.Item
+            label={
+              <>
+                计算结果
+                {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+              </>
+            }
+          >
+            <CopyBtn text={result.hash} />
+            <div style={{ marginTop: "8px" }}>
+              中间值: {result.bytes.length > 0 && result.bytes}
+            </div>
+          </Form.Item>
+        )}
       </Form>
       <Divider />
     </>

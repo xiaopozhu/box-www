@@ -2,6 +2,8 @@ import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Radio, message, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
+import { hashInfo } from "@/model/model";
+import CopyBtn from "@/components/button";
 
 const { TextArea } = Input;
 
@@ -13,7 +15,7 @@ const formItemLayout = {
 export default function MD4() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ encoding: "", hash: "", bytes: "" });
+  const [result, setResult] = useState<hashInfo>();
 
   const onFinish = (values: any) => {
     request("/api/v1/codec/md4", {
@@ -62,24 +64,26 @@ export default function MD4() {
             <Radio value="base64">Base64</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item
-          label={
-            <>
-              计算结果
-              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
-            </>
-          }
-        >
-          <TextArea placeholder="编码结果" rows={4} value={result.hash} />
-          <div style={{ marginTop: "8px" }}>
-            中间值: {result.bytes.length > 0 && result.bytes}
-          </div>
-        </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
             MD4
           </Button>
         </Form.Item>
+        {result && (
+          <Form.Item
+            label={
+              <>
+                计算结果
+                {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+              </>
+            }
+          >
+            <CopyBtn text={result.hash} />
+            <div style={{ marginTop: "8px" }}>
+              中间值: {result.bytes.length > 0 && result.bytes}
+            </div>
+          </Form.Item>
+        )}
       </Form>
       <Divider />
     </>

@@ -48,7 +48,7 @@ export default function Home(props: any) {
     request("/api/v1/user/mybox", {
       method: "GET",
     }).then((resp) => {
-      const infos = boxesData as boxInfo[];
+      const infos: boxInfo[] = JSON.parse(JSON.stringify(boxesData));
       infos[0].cards = [];
       const favorites: card[] = [];
       const temp = infos.map((info) => {
@@ -129,6 +129,7 @@ export default function Home(props: any) {
         message.error(resp.error);
       } else {
         handleFetchMybox();
+        message.success(`${resp.data.isFavorite ? "收藏成功!" : "取消成功"}`);
       }
     });
   };

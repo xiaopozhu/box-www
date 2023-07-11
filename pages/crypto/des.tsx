@@ -2,6 +2,8 @@ import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Radio, message, Space, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
+import { codecInfo } from "@/model/model";
+import CopyBtn from "@/components/button";
 
 const { TextArea } = Input;
 
@@ -13,7 +15,7 @@ const formItemLayout = {
 export default function DES() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ encoding: "", text: "", bytes: "" });
+  const [result, setResult] = useState<codecInfo>();
 
   const onFinish = (e: any, t: string) => {
     e.preventDefault();
@@ -80,19 +82,6 @@ export default function DES() {
         >
           <TextArea placeholder="密钥字符串, 仅支持明文" rows={1} />
         </Form.Item>
-        <Form.Item
-          label={
-            <>
-              计算结果
-              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
-            </>
-          }
-        >
-          <TextArea placeholder="加解密结果" rows={4} value={result.text} />
-          <div style={{ marginTop: "8px" }}>
-            二进制: {result.bytes.length > 0 && result.bytes}
-          </div>
-        </Form.Item>
         <Form.Item>
           <Space>
             <Button type="primary" onClick={(e) => onFinish(e, "encrypt")}>
@@ -101,6 +90,21 @@ export default function DES() {
             <Button onClick={(e) => onFinish(e, "decrypt")}>解密</Button>
           </Space>
         </Form.Item>
+        {result && (
+          <Form.Item
+            label={
+              <>
+                计算结果
+                {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+              </>
+            }
+          >
+            <CopyBtn text={result.text} />
+            <div style={{ marginTop: "8px" }}>
+              二进制: {result.bytes.length > 0 && result.bytes}
+            </div>
+          </Form.Item>
+        )}
       </Form>
       <Divider />
     </>

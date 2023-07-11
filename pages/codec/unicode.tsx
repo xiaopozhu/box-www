@@ -2,6 +2,8 @@ import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Radio, Space, message, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
+import { codecInfo } from "@/model/model";
+import CopyBtn from "@/components/button";
 
 const { TextArea } = Input;
 
@@ -13,7 +15,7 @@ const formItemLayout = {
 export default function Unicode() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState({ encoding: "", text: "", bytes: "" });
+  const [result, setResult] = useState<codecInfo>();
   const [type, setType] = useState("encode");
 
   const onFinish = (e: any) => {
@@ -53,7 +55,7 @@ export default function Unicode() {
             onChange={(v) => {
               setType(v.target.value);
               form.resetFields();
-              setResult({ encoding: "", text: "", bytes: "" });
+              setResult(undefined);
             }}
             defaultValue={type}
           >
@@ -68,30 +70,26 @@ export default function Unicode() {
         >
           <TextArea placeholder="待处理字符串" rows={4} />
         </Form.Item>
-        <Form.Item
-          label={
-            <>
-              计算结果
-              {result.encoding && <Tag color="red">{result.encoding}</Tag>}
-            </>
-          }
-        >
-          <TextArea
-            placeholder={type === "encode" ? "编码结果" : "解码结果"}
-            rows={4}
-            value={result.text}
-          />
-          <div style={{ marginTop: "8px" }}>
-            二进制: {result.bytes && result.bytes}
-          </div>
-        </Form.Item>
         <Form.Item>
-          <Space>
-            <Button type="primary" onClick={(e) => onFinish(e)}>
-              Unicode
-            </Button>
-          </Space>
+          <Button type="primary" onClick={(e) => onFinish(e)}>
+            Unicode
+          </Button>
         </Form.Item>
+        {result && (
+          <Form.Item
+            label={
+              <>
+                计算结果
+                {result.encoding && <Tag color="red">{result.encoding}</Tag>}
+              </>
+            }
+          >
+            <CopyBtn text={result.text} />
+            <div style={{ marginTop: "8px" }}>
+              二进制: {result.bytes && result.bytes}
+            </div>
+          </Form.Item>
+        )}
       </Form>
       <Divider />
     </>

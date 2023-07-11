@@ -2,6 +2,7 @@ import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Space, message } from "antd";
 import { useState } from "react";
 import Head from "next/head";
+import CopyBtn from "@/components/button";
 
 const { TextArea } = Input;
 
@@ -54,14 +55,16 @@ export default function CNY2CN() {
         >
           <TextArea placeholder="100.32" rows={2} />
         </Form.Item>
-        <Form.Item label="处理结果">{result.text}</Form.Item>
         <Form.Item>
-          <Space>
-            <Button type="primary" onClick={(e) => onFinish(e)}>
-              转换
-            </Button>
-          </Space>
+          <Button type="primary" onClick={(e) => onFinish(e)}>
+            转换
+          </Button>
         </Form.Item>
+        {result.text && (
+          <Form.Item label="处理结果">
+            <CopyBtn text={result.text} />
+          </Form.Item>
+        )}
       </Form>
       <Divider />
     </>
