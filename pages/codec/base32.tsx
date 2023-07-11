@@ -103,7 +103,7 @@ export default function Base32() {
           >
             <CopyBtn text={result.text} />
             <div style={{ marginTop: "8px" }}>
-              二进制: {result.bytes && result.bytes}
+              十六进制: {result.bytes && result.bytes}
             </div>
           </Form.Item>
         )}

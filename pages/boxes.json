@@ -133,6 +133,14 @@
         "desc": "URL中的特殊字符转换为%xx的形式进行传输和处理，以确保URL的正确性和完整性。",
         "path": "/codec/url",
         "tags": null
+      },
+      {
+        "id": "punycode",
+        "name": "Punycode",
+        "icon": "/default.png",
+        "desc": "Punycode将Unicode字符转换为ASCII字符，用于在域名系统中处理国际化域名。",
+        "path": "/codec/punycode",
+        "tags": null
       }
     ]
   },

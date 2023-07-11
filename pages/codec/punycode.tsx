@@ -12,21 +12,21 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function Base64() {
+export default function Punycode() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState<codecInfo>();
   const [type, setType] = useState("encode");
 
-  const onFinish = (e: any, et: string) => {
+  const onFinish = (e: any) => {
     e.preventDefault();
 
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/base64", {
+        request("/api/v1/codec/punycode", {
           method: "POST",
-          body: JSON.stringify({ ...values, type: type, encodeType: et }),
+          body: JSON.stringify({ ...values, type: type }),
         })
           .then((resp) => {
             if (resp.code !== 0) return message.error(resp.error);
@@ -44,10 +44,10 @@ export default function Base64() {
   return (
     <>
       <Head>
-        <title>Base64 - CryptoBox密码工具箱</title>
+        <title>Punycode - CryptoBox密码工具箱</title>
       </Head>
       <div style={{ marginBottom: "24px" }}>
-        <h1>Base64</h1>
+        <h1>Punycode</h1>
       </div>
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item label="编码解码" required>
@@ -68,28 +68,17 @@ export default function Base64() {
           name="text"
           rules={[{ required: true }, { type: "string", min: 1 }]}
         >
-          <TextArea placeholder="待处理字符串" rows={4} />
+          <TextArea
+            placeholder={
+              type === "encode" ? "你好世界.com" : "xn--rhq34a65tw32a.com"
+            }
+            rows={4}
+          />
         </Form.Item>
-        {type === "encode" && (
-          <Form.Item
-            label="字符格式"
-            name="encoding"
-            required
-            initialValue={"plaintext"}
-          >
-            <Radio.Group>
-              <Radio value="plaintext">明文</Radio>
-              <Radio value="hex">Hex</Radio>
-            </Radio.Group>
-          </Form.Item>
-        )}
         <Form.Item>
-          <Space>
-            <Button type="primary" onClick={(e) => onFinish(e, "std")}>
-              Base64 标准
-            </Button>
-            <Button onClick={(e) => onFinish(e, "url")}>Base64 URL</Button>
-          </Space>
+          <Button type="primary" onClick={(e) => onFinish(e)}>
+            Punycode
+          </Button>
         </Form.Item>
         {result && (
           <Form.Item
