@@ -190,7 +190,7 @@
         "id": "cert",
         "name": "CERT解析",
         "icon": "/default.png",
-        "desc": "CERT解析器，支持常见格式：PEM、CRT",
+        "desc": "CERT解析器，支持常见格式：PEM、CRT、DER",
         "path": "/pkica/cert-parse",
         "tags": null
       }
