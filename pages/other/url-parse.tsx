@@ -22,14 +22,7 @@ interface urlResult {
 export default function URLParse() {
   const [form] = Form.useForm();
 
-  const [result, setResult] = useState<urlResult>({
-    scheme: "",
-    user: "",
-    host: "",
-    path: "",
-    rawQuery: "",
-    fragment: "",
-  });
+  const [result, setResult] = useState<urlResult>();
 
   const onFinish = (e: any) => {
     e.preventDefault();
@@ -68,32 +61,36 @@ export default function URLParse() {
           name="text"
           rules={[{ required: true }, { type: "string", min: 1 }]}
         >
-          <TextArea placeholder="[scheme:][//[userinfo@]host][/]path[?query][#fragment]" rows={2} />
-        </Form.Item>
-        <Form.Item label="处理结果">
-          <List size="small">
-            {Object.keys(result).map((k) => (
-              <List.Item key={k}>
-                <small
-                  style={{
-                    display: "inline-block",
-                    minWidth: "70px",
-                    textAlign: "right",
-                  }}
-                >
-                  {k.toUpperCase()}
-                </small>{" : "}
-                {(result as any)[k]}
-              </List.Item>
-            ))}
-          </List>
+          <TextArea
+            placeholder="[scheme:][//[userinfo@]host][/]path[?query][#fragment]"
+            rows={2}
+          />
         </Form.Item>
         <Form.Item>
-          <Space>
-            <Button type="primary" onClick={(e) => onFinish(e)}>
-              URL解析
-            </Button>
-          </Space>
+          <Button type="primary" onClick={(e) => onFinish(e)}>
+            URL解析
+          </Button>
+        </Form.Item>
+        <Form.Item label="处理结果">
+          {result && (
+            <List size="small">
+              {Object.keys(result).map((k) => (
+                <List.Item key={k}>
+                  <small
+                    style={{
+                      display: "inline-block",
+                      minWidth: "100px",
+                      textAlign: "right",
+                    }}
+                  >
+                    {k.toUpperCase()}
+                    {" : "}
+                  </small>
+                  {(result as any)[k]}
+                </List.Item>
+              ))}
+            </List>
+          )}
         </Form.Item>
       </Form>
       <Divider />

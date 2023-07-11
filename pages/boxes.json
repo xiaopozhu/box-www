@@ -183,6 +183,20 @@
     ]
   },
   {
+    "id": "pkica",
+    "title": "PKI/CA/x509",
+    "cards": [
+      {
+        "id": "cert",
+        "name": "CERT解析",
+        "icon": "/default.png",
+        "desc": "CERT解析器，支持常见格式：PEM、CRT",
+        "path": "/pkica/cert-parse",
+        "tags": null
+      }
+    ]
+  },
+  {
     "id": "other",
     "title": "实验小工具",
     "cards": [
