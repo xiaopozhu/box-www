@@ -52,7 +52,7 @@ export default function CertParse() {
     }
     request("/api/v1/pkica/cert-parse", {
       method: "POST",
-      body: JSON.stringify({ paste }),
+      body: JSON.stringify({ cert: paste }),
     })
       .then((resp) => {
         if (resp.code !== 0) return message.error(resp.error);
