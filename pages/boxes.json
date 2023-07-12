@@ -187,6 +187,22 @@
         "desc": "一种对称加密算法，采用64位密钥进行加密和解密，适用于简单的数据保护需求。",
         "path": "/crypto/sm4",
         "tags": null
+      },
+      {
+        "id": "twofish",
+        "name": "Twofish",
+        "icon": "/default.png",
+        "desc": "一种高级的对称密钥块密码算法，支持128、192或256位的密钥长度，用于数据加密和解密。",
+        "path": "/crypto/twofish",
+        "tags": null
+      },
+      {
+        "id": "Blowfish",
+        "name": "Blowfish",
+        "icon": "/default.png",
+        "desc": "一种流行的对称密钥块密码算法，支持可变长度的密钥，用于数据加解密。具有简单的结构和高效的性能。",
+        "path": "/crypto/blowfish",
+        "tags": null
       }
     ]
   },

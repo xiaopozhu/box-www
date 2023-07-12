@@ -12,7 +12,7 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function AES() {
+export default function Blowfish() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState<codecInfo>();
@@ -23,7 +23,7 @@ export default function AES() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/aes", {
+        request("/api/v1/crypto/blowfish", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })
@@ -43,10 +43,10 @@ export default function AES() {
   return (
     <>
       <Head>
-        <title>AES - CryptoBox密码工具箱</title>
+        <title>Blowfish - CryptoBox密码工具箱</title>
       </Head>
       <div style={{ marginBottom: "24px" }}>
-        <h1>AES</h1>
+        <h1>Blowfish</h1>
       </div>
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item
@@ -68,20 +68,11 @@ export default function AES() {
             <Radio value="base64">Base64</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label="加密模式" name="mode" required initialValue={"cbc"}>
-          <Radio.Group>
-            <Radio value="cbc">CBC</Radio>
-            <Radio value="cfb">CFB</Radio>
-            <Radio value="ctr">CTR</Radio>
-            <Radio value="gcm">GCM</Radio>
-            <Radio value="ofb">OFB</Radio>
-          </Radio.Group>
-        </Form.Item>
         <Form.Item
           label="加解密钥"
           name="key"
           required
-          rules={[{ type: "string", min: 16 }]}
+          rules={[{ type: "string", min: 1 }]}
           tooltip="目前仅支持明文密钥"
         >
           <TextArea placeholder="密钥字符串, 仅支持明文" rows={1} />

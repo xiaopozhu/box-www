@@ -12,7 +12,7 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-export default function AES() {
+export default function Twofish() {
   const [form] = Form.useForm();
 
   const [result, setResult] = useState<codecInfo>();
@@ -23,7 +23,7 @@ export default function AES() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/aes", {
+        request("/api/v1/crypto/twofish", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })
@@ -43,10 +43,10 @@ export default function AES() {
   return (
     <>
       <Head>
-        <title>AES - CryptoBox密码工具箱</title>
+        <title>Twofish - CryptoBox密码工具箱</title>
       </Head>
       <div style={{ marginBottom: "24px" }}>
-        <h1>AES</h1>
+        <h1>Twofish</h1>
       </div>
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item
@@ -66,15 +66,6 @@ export default function AES() {
             <Radio value="plaintext">明文</Radio>
             <Radio value="hex">Hex</Radio>
             <Radio value="base64">Base64</Radio>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item label="加密模式" name="mode" required initialValue={"cbc"}>
-          <Radio.Group>
-            <Radio value="cbc">CBC</Radio>
-            <Radio value="cfb">CFB</Radio>
-            <Radio value="ctr">CTR</Radio>
-            <Radio value="gcm">GCM</Radio>
-            <Radio value="ofb">OFB</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item
