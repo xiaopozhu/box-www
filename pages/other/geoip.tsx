@@ -50,7 +50,7 @@ export default function GeoIP() {
       <Form {...formItemLayout} form={form} layout="vertical">
         <Form.Item
           label="指定IP地址"
-          name="text"
+          name="ip"
           rules={[{ type: "string", min: 1 }]}
         >
           <TextArea
