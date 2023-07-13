@@ -76,8 +76,7 @@ export default function SM4() {
         <Form.Item
           label="加解密钥"
           name="key"
-          required
-          rules={[{ type: "string", min: 1 }]}
+          rules={[{ required: true }, { type: "string", min: 1 }]}
           tooltip="目前仅支持明文密钥"
         >
           <TextArea placeholder="密钥字符串, 仅支持明文" rows={1} />

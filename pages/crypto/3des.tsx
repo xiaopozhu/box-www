@@ -76,8 +76,7 @@ export default function DESTriple() {
         <Form.Item
           label="加解密钥"
           name="key"
-          required
-          rules={[{ type: "string", len: 24 }]}
+          rules={[{ required: true }, { type: "string", len: 24 }]}
           tooltip="目前仅支持明文密钥"
         >
           <TextArea placeholder="密钥字符串, 仅支持明文" rows={1} />
