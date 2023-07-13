@@ -56,6 +56,10 @@
         <loc>https://box.deepzz.com/codec/url</loc>
         <lastmod>2023-06-01</lastmod>
     </url>
+    <url>
+        <loc>https://box.deepzz.com/codec/punycode</loc>
+        <lastmod>2023-06-01</lastmod>
+    </url>
 
 
     <url>
@@ -70,10 +74,32 @@
         <loc>https://box.deepzz.com/codec/rc4</loc>
         <lastmod>2023-06-01</lastmod>
     </url>
+    <url>
+        <loc>https://box.deepzz.com/codec/twofish</loc>
+        <lastmod>2023-06-01</lastmod>
+    </url>
+    <url>
+        <loc>https://box.deepzz.com/codec/blowfish</loc>
+        <lastmod>2023-06-01</lastmod>
+    </url>
+
+
+    <url>
+        <loc>https://box.deepzz.com/pkica/cert-parse</loc>
+        <lastmod>2023-06-01</lastmod>
+    </url>    
 
 
     <url>
         <loc>https://box.deepzz.com/other/url-parse</loc>
+        <lastmod>2023-06-01</lastmod>
+    </url>
+    <url>
+        <loc>https://box.deepzz.com/other/cny2cn</loc>
+        <lastmod>2023-06-01</lastmod>
+    </url>
+    <url>
+        <loc>https://box.deepzz.com/other/geoip</loc>
         <lastmod>2023-06-01</lastmod>
     </url>
 </urlset>
