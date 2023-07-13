@@ -239,6 +239,14 @@
         "desc": "将金额转换为人民币大写, 如: 100.20 => 壹佰元贰角",
         "path": "/other/cny2cn",
         "tags": null
+      },
+      {
+        "id": "geoip",
+        "name": "GeoIP",
+        "icon": "/default.png",
+        "desc": "查询指定IP地址的Geo地址，时区，经纬度等信息。",
+        "path": "/other/geoip",
+        "tags": null
       }
     ]
   }

@@ -1,9 +1,10 @@
 import { Inter } from "next/font/google";
-import { Avatar } from "antd";
+import { Avatar, message } from "antd";
 import {
   LogoutOutlined,
   SettingOutlined,
   LoginOutlined,
+  GlobalOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -11,6 +12,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 import styles from "@/styles/layout.module.css";
 import Footer from "./footer";
+import { useEffect, useState } from "react";
+import { request } from "@/utils/request";
+import { ipInfo } from "@/model/model";
 
 const navMenu = [
   {
@@ -41,6 +45,25 @@ interface Props {
 }
 
 export default function Layout(props: Props) {
+  const [ipInfo, setIPInfo] = useState<ipInfo>();
+
+  useEffect(() => {
+    request("/api/v1/other/geoip", {
+      method: "POST",
+      body: JSON.stringify({}),
+    })
+      .then((resp) => {
+        if (resp.code !== 0) {
+          message.error(resp.error);
+          return;
+        }
+        setIPInfo(resp.data);
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      });
+  }, []);
+
   const { profile } = props;
   return (
     <div
@@ -56,6 +79,10 @@ export default function Layout(props: Props) {
               </div>
             </Link>
             <h1 className={styles.menuTitle}>你好，游客</h1>
+            <small style={{ color: "#898c8c" }}>
+              <GlobalOutlined />
+              {ipInfo && ` ${ipInfo.country}·${ipInfo.state}·${ipInfo.city}`}
+            </small>
 
             <nav className={styles.menuNav}>
               <ul>
