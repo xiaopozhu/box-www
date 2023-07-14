@@ -9,7 +9,9 @@ const nextConfig = {
       },
     ];
   },
-
+  images: {
+    domains: ["st.deepzz.com"],
+  },
   // 环境变量配置
   env: {
     API_HOST:
