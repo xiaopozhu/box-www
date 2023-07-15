@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -97,6 +98,46 @@ export default function Punycode() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>Punycode编码算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>Punycode是一种编码语法,用于将Unicode字符转换为ASCII字符。</p>
+
+        <p>Punycode常用于国际化域名(IDN)的编码。</p>
+
+        <h4>二、编码原理</h4>
+
+        <p>Punycode的编码过程主要分为:</p>
+
+        <ol>
+          <li>标识非ASCII字符</li>
+          <li>转换为特定前缀和数字表示</li>
+          <li>连接前缀和数字串</li>
+        </ol>
+
+        <p>解码是按照相反的步骤执行。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>Punycode主要应用于:</p>
+
+        <ul>
+          <li>国际化域名编码</li>
+          <li>表示包含非英文字符的域名</li>
+        </ul>
+
+        <h4>四、特点</h4>
+
+        <p>Punycode的主要特点:</p>
+
+        <ul>
+          <li>可逆编码机制</li>
+          <li>与ASCII域名后向兼容</li>
+          <li>编解码过程简单高效</li>
+        </ul>
+      </article>
     </>
   );
 }

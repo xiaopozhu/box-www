@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -106,6 +107,49 @@ export default function DESTriple() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>3DES加密算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>3DES是一种对称加密算法,通过多次迭代DES算法来提高安全性。</p>
+
+        <p>3DES使用168位的密钥,对数据进行三次加密来保证强度。</p>
+
+        <h4>二、算法原理</h4>
+
+        <p>3DES的基本工作流程是:</p>
+
+        <ol>
+          <li>使用密钥K1对明文进行DES加密</li>
+          <li>使用密钥K2对上一步的结果进行DES解密</li>
+          <li>使用密钥K3再对上一步的结果进行DES加密</li>
+        </ol>
+
+        <p>解密按照逆序进行,使用K3、K2、K1解密。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>3DES曾被广泛应用于:</p>
+
+        <ul>
+          <li>支付系统中数据传输</li>
+          <li>数字签名和认证</li>
+          <li>磁盘和文件加密</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>相比DES,3DES主要增强了:</p>
+
+        <ul>
+          <li>168位密钥,防止暴力破解</li>
+          <li>多重加密,提高算法强度</li>
+          <li>抵御差ferential和线性分析</li>
+        </ul>
+
+        <p>3DES已被AES算法所取代,但仍有一定的应用。</p>
+      </article>
     </>
   );
 }

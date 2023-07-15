@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { hashInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -101,6 +102,51 @@ export default function BLAKE2s() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>BLAKE2s哈希算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>
+          BLAKE2s是BLAKE2算法系列的一个轻量级变种,用于生成固定长度为256位的哈希值。
+        </p>
+
+        <p>BLAKE2s适用于对性能和资源有要求的场景。</p>
+
+        <h4>二、技术实现</h4>
+
+        <p>BLAKE2s的主要计算步骤包括:</p>
+
+        <ol>
+          <li>初始化状态矩阵</li>
+          <li>对消息分块迭代压缩</li>
+          <li>输出最终状态作为哈希值</li>
+        </ol>
+
+        <p>压缩函数使用了优化的G函数。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>BLAKE2s常用于:</p>
+
+        <ul>
+          <li>IoT和嵌入式设备</li>
+          <li>实时系统和网络协议</li>
+          <li>对性能要求较高的应用</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>BLAKE2s相比BLAKE2b有以下特点:</p>
+
+        <ul>
+          <li>计算速度更快</li>
+          <li>代码体积更小</li>
+          <li>哈希长度固定为256位</li>
+        </ul>
+
+        <p>BLAKE2s提供了很好的性能和安全性平衡。</p>
+      </article>
     </>
   );
 }

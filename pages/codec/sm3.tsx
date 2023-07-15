@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { hashInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -86,6 +87,51 @@ export default function SM3() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>SM3 - 国密哈希算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>
+          SM3是我国自主研发的一种密码散列算法,输出消息摘要长度为256位(32字节)。
+        </p>
+
+        <p>SM3 algorithm作为国密标准之一,被广泛应用于数据完整性保护等场景。</p>
+
+        <h4>二、技术原理</h4>
+
+        <p>SM3算法主要过程包括:</p>
+
+        <ul>
+          <li>对消息进行填充和分组</li>
+          <li>生成初始向量</li>
+          <li>迭代压缩生成消息摘要</li>
+        </ul>
+
+        <p>其压缩函数通过布尔逻辑与模运算生成输出,抗差分和线性分析攻击。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>SM3主要应用于:</p>
+
+        <ul>
+          <li>数字签名 - 生成签名和验证签名</li>
+          <li>数据完整性 - 计算散列值校验信息</li>
+          <li>用户认证 - 密码哈希化存储</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>SM3算法具有以下安全优势:</p>
+
+        <ul>
+          <li>抗碰撞、抗穷举、抗差分等攻击</li>
+          <li>输出散列唯一性强</li>
+          <li>支持任意消息长度</li>
+        </ul>
+
+        <p>SM3是当前较为安全可靠的哈希算法之一。</p>
+      </article>
     </>
   );
 }

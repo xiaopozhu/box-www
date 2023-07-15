@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -101,6 +102,49 @@ export default function RC4() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>RC4加密算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>RC4是一种流加密算法,通过生成伪随机位流来对信息进行加密。</p>
+
+        <p>RC4算法简单且速度快,但存在一定的统计安全性问题。</p>
+
+        <h4>二、算法原理</h4>
+
+        <p>RC4算法的主要步骤是:</p>
+
+        <ol>
+          <li>初始化S盒,一个包含0-255的随机置换</li>
+          <li>利用密钥调整S盒</li>
+          <li>生成伪随机字节流对消息加密</li>
+        </ol>
+
+        <p>解密时使用相同的S盒和密钥进行解密。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>RC4曾被广泛用于:</p>
+
+        <ul>
+          <li>TLS/SSL加密通信</li>
+          <li>无线网络加密</li>
+          <li>文件加密工具</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>RC4算法存在以下安全风险:</p>
+
+        <ul>
+          <li>相关密钥攻击</li>
+          <li>弱密钥问题</li>
+          <li>初始化矢量可预测</li>
+        </ul>
+
+        <p>建议用AES等算法取代RC4。</p>
+      </article>
     </>
   );
 }

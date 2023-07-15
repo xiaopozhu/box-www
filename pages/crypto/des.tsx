@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -106,6 +107,58 @@ export default function DES() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>DES加密算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>
+          DES(Data Encryption Standard)是一种基于Feistel结构的对称加密算法。
+        </p>
+
+        <p>DES使用56位密钥对数据进行加密,密钥通常表示为16进制数。</p>
+
+        <h4>二、算法原理</h4>
+
+        <p>DES的工作流程是:</p>
+
+        <ol>
+          <li>初始化置换</li>
+          <li>
+            16轮迭代运算
+            <ol>
+              <li>扩展置换</li>
+              <li>S盒置换</li>
+              <li>P置换</li>
+            </ol>
+          </li>
+          <li>逆初始置换</li>
+        </ol>
+
+        <p>每轮使用子密钥的不同部分进行异或和置换操作。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>DES曾被广泛使用于:</p>
+
+        <ul>
+          <li>早期的安全通信</li>
+          <li>文件和数据加密</li>
+          <li>UNIX和Windows系统加密</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>DES存在以下安全性问题:</p>
+
+        <ul>
+          <li>56位密钥过于短小</li>
+          <li>容易受到穷举攻击</li>
+          <li>S盒设计有缺陷</li>
+        </ul>
+
+        <p>DES已不再安全,应该采用AES等替代算法。</p>
+      </article>
     </>
   );
 }

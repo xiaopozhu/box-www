@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -106,6 +107,50 @@ export default function SM4() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>SM4加密算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>SM4是我国自主研发的分组加密算法,在GM/T 0003国家标准中规定。</p>
+
+        <p>SM4采用128位分组,128位密钥,用于数据加密和解密。</p>
+
+        <h4>二、算法原理</h4>
+
+        <p>SM4的关键过程包含:</p>
+
+        <ol>
+          <li>进行非线性变换S盒替代</li>
+          <li>行变换层</li>
+          <li>进行轮密钥加操作</li>
+          <li>32轮迭代运算</li>
+        </ol>
+
+        <p>加解密均使用相同的算法流程。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>SM4广泛应用于:</p>
+
+        <ul>
+          <li>无线通信加密</li>
+          <li>数据存储和信息安全</li>
+          <li>密码产品和系统</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>SM4具有以下安全特点:</p>
+
+        <ul>
+          <li>抗线性和差分分析</li>
+          <li>高计算复杂度</li>
+          <li>没有相关密钥弱点</li>
+        </ul>
+
+        <p>SM4是较为可靠和安全的国产对称算法。</p>
+      </article>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -92,6 +93,49 @@ export default function Unicode() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>Unicode编码</h3>
+
+        <h4>一、概述</h4>
+
+        <p>
+          Unicode是一种国际通用的字符编码标准,用于表示世界上大多数语言中的字符。
+        </p>
+
+        <p>Unicode为每个字符分配一个唯一的编码,支持21位的编码空间。</p>
+
+        <h4>二、编码方案</h4>
+
+        <p>Unicode有以下几种常用编码方案:</p>
+
+        <ul>
+          <li>UTF-8 - 1-4个字节可变长度编码</li>
+          <li>UTF-16 - 2或4个字节,支持代理对</li>
+          <li>UTF-32 - 4个字节,每个字符一个码点</li>
+        </ul>
+
+        <p>UTF-8是Unicode的最常用编码形式。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>Unicode广泛应用于:</p>
+
+        <ul>
+          <li>国际化软件</li>
+          <li>多语言网站</li>
+          <li>词典编纂</li>
+        </ul>
+
+        <h4>四、优点</h4>
+
+        <p>Unicode的主要优点:</p>
+
+        <ul>
+          <li>支持所有国家语言的字符</li>
+          <li>统一的编码,便于交换和处理</li>
+          <li>向后兼容ASCII</li>
+        </ul>
+      </article>
     </>
   );
 }

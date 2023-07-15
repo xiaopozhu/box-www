@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -92,6 +93,49 @@ export default function Hex() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>Hex编码</h3>
+
+        <h4>一、概述</h4>
+
+        <p>Hex编码是一种将二进制数据编码为十六进制格式的编码机制。</p>
+
+        <p>Hex编码使用0-9和A-F表示数据,常用于表示散列值、颜色代码等。</p>
+
+        <h4>二、编码原理</h4>
+
+        <p>Hex编码的过程是:</p>
+
+        <ol>
+          <li>将输入Bytes拆分成每个4位二进制</li>
+          <li>根据对应关系转换为0-9或A-F的Hex字符</li>
+          <li>输出Hex序列</li>
+        </ol>
+
+        <p>解码按照编码的逆过程执行。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>Hex编码常见的使用场景包括:</p>
+
+        <ul>
+          <li>表示散列值,如MD5、SHA-1</li>
+          <li>网页颜色代码</li>
+          <li>数据存储和传输</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>Hex编码存在以下安全性问题:</p>
+
+        <ul>
+          <li>无加密功能,可逆操作</li>
+          <li>无法防止数据篡改</li>
+          <li>易受代码注入等攻击</li>
+        </ul>
+
+        <p>Hex编码需要与其他安全机制配合使用。</p>
+      </article>
     </>
   );
 }

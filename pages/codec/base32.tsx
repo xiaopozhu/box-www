@@ -2,8 +2,9 @@ import { request } from "@/utils/request";
 import { Divider, Form, Input, Button, Radio, Space, message, Tag } from "antd";
 import { useState } from "react";
 import Head from "next/head";
-import { codecInfo, hashInfo } from "@/model/model";
+import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -109,6 +110,49 @@ export default function Base32() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>Base32编码算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>Base32是一种编码算法,用于以更紧凑的方式表示二进制数据。</p>
+
+        <p>Base32使用26个大写字母和6个数字来构成编码字符集。</p>
+
+        <h4>二、编码原理</h4>
+
+        <p>Base32的编码过程主要包含:</p>
+
+        <ol>
+          <li>将数据分成5位一组</li>
+          <li>每5位映射到8位字符</li>
+          <li>对不足40位的尾数补充填充字符=</li>
+        </ol>
+
+        <p>解码按编码的逆过程执行,恢复原始数据。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>Base32常用于:</p>
+
+        <ul>
+          <li>编码文件标识符</li>
+          <li>生成文件校验和</li>
+          <li>在URL和XML中传输二进制数据</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>Base32只是一种编码,不具加密功能,存在以下问题:</p>
+
+        <ul>
+          <li>可逆解码,不保密数据</li>
+          <li>容易受到代码注入等攻击</li>
+          <li>无法防止数据篡改</li>
+        </ul>
+
+        <p>Base32应与其他安全措施配合使用。</p>
+      </article>
     </>
   );
 }

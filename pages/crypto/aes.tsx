@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -110,6 +111,53 @@ export default function AES() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>AES加密算法</h3>
+
+        <h4>一、概述</h4>
+
+        <p>
+          AES(Advanced Encryption
+          Standard)是一种对称加密算法,基于子代换和列混淆结构设计。
+        </p>
+
+        <p>AES支持128位、192位和256位三种密钥长度。</p>
+
+        <h4>二、算法原理</h4>
+
+        <p>AES加密分为以下基本步骤:</p>
+
+        <ol>
+          <li>按字节划分明文,转换为状态矩阵</li>
+          <li>轮密钥加 - 每轮带密钥的字节代换和行移位</li>
+          <li>列混淆 - 使用线性变换混淆状态矩阵</li>
+          <li>最终轮转换,输出密文</li>
+        </ol>
+
+        <p>解密反序进行以上步骤,使用轮密钥的逆序。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>AES常用于如下场景:</p>
+
+        <ul>
+          <li>文件和数据存储加密</li>
+          <li>网络通信加密</li>
+          <li>WiFi和电子支付加密</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>AES安全性分析:</p>
+
+        <ul>
+          <li>抵御已知明文攻击</li>
+          <li>抵御微差分和线性密码分析</li>
+          <li>密钥长度足够,暴力破解难度大</li>
+        </ul>
+
+        <p>AES被广泛认为是可靠、高强度的加密算法。</p>
+      </article>
     </>
   );
 }

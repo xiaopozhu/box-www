@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { codecInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -92,6 +93,49 @@ export default function URL() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>URL编码</h3>
+
+        <h4>一、概述</h4>
+
+        <p>URL编码是一种编码机制,用于将字符转换为可通过因特网传输的格式。</p>
+
+        <p>它将字符转换为一个%后跟两位十六进制数的形式。</p>
+
+        <h4>二、编码规则</h4>
+
+        <p>URL编码使用以下规则:</p>
+
+        <ul>
+          <li>大写和小写英文字母、数字 0-9 保持原样</li>
+          <li>特殊符号转换为 %XX 的形式,XX为该符号对应的两位十六进制码</li>
+          <li>空格转换为 %20</li>
+        </ul>
+
+        <p>例如 @ 符号编码为 %40</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>URL编码常见的应用有:</p>
+
+        <ul>
+          <li>URL参数传递 - 编码参数名和参数值</li>
+          <li>表单提交 - 对提交数据进行编码</li>
+          <li>网页编码 - 嵌入特殊字符</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>URL编码的安全性分析:</p>
+
+        <ul>
+          <li>可逆过程,不具加密作用</li>
+          <li>存在字符被多次编码的问题</li>
+          <li>容易受到代码注入等攻击</li>
+        </ul>
+
+        <p>URL编码只是转换格式,不能防止攻击,需要结合输入过滤使用。</p>
+      </article>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { hashInfo } from "@/model/model";
 import CopyBtn from "@/components/button";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -95,6 +96,50 @@ export default function SHA3() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>SHA-3 - 安全哈希算法3</h3>
+
+        <h4>一、概述</h4>
+
+        <p>SHA-3是最新的安全哈希算法标准,由美国国家标准与技术研究院设计。</p>
+
+        <p>SHA-3具有不同的变种,可以生成224、256、384、512位的哈希值。</p>
+
+        <h4>二、技术原理</h4>
+
+        <p>SHA-3使用了全新的设计理念:</p>
+
+        <ul>
+          <li>采用可替代的压缩函数</li>
+          <li>基于海绵函数结构</li>
+          <li>不再依赖分组长度</li>
+        </ul>
+
+        <p>SHA-3的安全性不依赖于碰撞抗性,而在于其强大的混淆和扩散能力。</p>
+
+        <h4>三、应用场景</h4>
+
+        <p>SHA-3可广泛应用于:</p>
+
+        <ul>
+          <li>数据完整性验证</li>
+          <li>数字签名</li>
+          <li>密码学协议</li>
+          <li>随机数生成</li>
+        </ul>
+
+        <h4>四、安全性分析</h4>
+
+        <p>相比SHA-2,SHA-3在以下方面进行了增强:</p>
+
+        <ul>
+          <li>抗量子计算攻击</li>
+          <li>不受长度扩展攻击影响</li>
+          <li>基于全新结构,抗已知和未知攻击</li>
+        </ul>
+
+        <p>SHA-3是当今最强大和可靠的哈希算法之一。</p>
+      </article>
     </>
   );
 }

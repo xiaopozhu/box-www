@@ -3,6 +3,7 @@ import { Form, Input, Button, Divider, Upload, message, List } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { request } from "@/utils/request";
+import styles from "@/styles/blog.module.css";
 
 const { TextArea } = Input;
 
@@ -151,6 +152,51 @@ export default function CertParse() {
         )}
       </Form>
       <Divider />
+      <article className={styles.container}>
+        <h3>X.509证书解析</h3>
+
+        <h4>一、X.509证书简介</h4>
+
+        <p>X.509是一种数字证书标准,用于PublicKey Infrastructure(PKI)。</p>
+
+        <p>X.509证书通过数字签名建立标识信任链,用于网络安全认证。</p>
+
+        <h4>二、证书内容解析</h4>
+
+        <p>X.509证书主要包含以下信息:</p>
+
+        <ul>
+          <li>版本号 - v1、v2或v3</li>
+          <li>序列号 - 证书唯一标识</li>
+          <li>签名算法 - 证书签名所用算法</li>
+          <li>颁发者 - 证书颁发机构信息</li>
+          <li>有效期 - 证书生效和过期时间</li>
+          <li>主体 - 用户或设备标识信息</li>
+          <li>公钥 - 加密公钥</li>
+          <li>证书签名 - 颁发机构对信息的签名</li>
+        </ul>
+
+        <h4>三、证书验证</h4>
+
+        <p>验证X.509证书的主要步骤:</p>
+
+        <ol>
+          <li>检查版本号是否最新</li>
+          <li>确认颁发机构可信任</li>
+          <li>检验证书有效期</li>
+          <li>检查证书签名的正确性</li>
+        </ol>
+
+        <h4>四、证书信任链</h4>
+
+        <p>X.509证书验证也依赖证书信任链:</p>
+
+        <ul>
+          <li>根证书签名中间CA证书</li>
+          <li>中间CA证书签名服务器证书</li>
+          <li>设备内置受信任的根证书</li>
+        </ul>
+      </article>
     </>
   );
 }
