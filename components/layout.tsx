@@ -91,7 +91,9 @@ export default function Layout(props: Props) {
                 <Avatar size={130} src={profile?.avatar || "/avatar.png"} />
               </div>
             </Link>
-            <h1 className={styles.menuTitle}>你好，游客</h1>
+            <h1 className={styles.menuTitle}>
+              你好，{profile ? profile.nickname : "游客"}
+            </h1>
             <small style={{ color: "#898c8c" }}>
               <GlobalOutlined />
               {ipInfo && ` ${ipInfo.country}·${ipInfo.state}·${ipInfo.city}`}
