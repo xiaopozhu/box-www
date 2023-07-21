@@ -7,6 +7,7 @@ import {
   GlobalOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ import Footer from "./footer";
 import { useEffect, useState } from "react";
 import { request } from "@/utils/request";
 import { ipInfo } from "@/model/model";
+import Login from "./login";
 
 const navMenu = [
   {
@@ -46,6 +48,9 @@ interface Props {
 
 export default function Layout(props: Props) {
   const [ipInfo, setIPInfo] = useState<ipInfo>();
+  const [showLogin, setShowLogin] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     request("/api/v1/other/geoip", {
@@ -63,6 +68,14 @@ export default function Layout(props: Props) {
         console.log(`${err}`);
       });
   }, []);
+
+  const handleLogout = () => {
+    request("/api/v1/user/logout").then((resp) => {
+      if (resp.code === 0) {
+        router.reload();
+      }
+    });
+  };
 
   const { profile } = props;
   return (
@@ -106,18 +119,24 @@ export default function Layout(props: Props) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/logout" style={{ color: "red" }}>
+                  <div
+                    onClick={handleLogout}
+                    style={{ color: "red", cursor: "pointer" }}
+                  >
                     <LogoutOutlined style={{ marginRight: "4px" }} />
                     退出登录
-                  </Link>
+                  </div>
                 </li>
               </>
             ) : (
               <li>
-                <Link href="/login">
+                <div
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setShowLogin(true)}
+                >
                   <LoginOutlined style={{ marginRight: "4px" }} />
                   注册/登录
-                </Link>
+                </div>
               </li>
             )}
           </ul>
@@ -125,6 +144,7 @@ export default function Layout(props: Props) {
         <main className={styles.content}>{props.children}</main>
       </div>
       <Footer />
+      <Login show={showLogin} setShow={setShowLogin} />
     </div>
   );
 }
