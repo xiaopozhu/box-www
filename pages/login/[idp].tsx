@@ -10,9 +10,7 @@ export default function Callback() {
   const idp = router.query.idp;
   useEffect(() => {
     if (idp && query) {
-      request(`/api/v1/oauth/${idp}/callback?${query}`, {
-        credentials: "include",
-      }).then((resp) => {
+      request(`/api/v1/oauth/${idp}/callback?${query}`).then((resp) => {
         if (resp.code === 0) {
           router.push("/");
         } else {

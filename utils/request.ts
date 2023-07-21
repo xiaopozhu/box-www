@@ -64,7 +64,14 @@ export async function request(
   url: string,
   options?: RequestInit
 ): Promise<any | { err: ResponseError }> {
-  const fetchResponse = await fetch(`${process.env.API_HOST}${url}`, options);
+  const fetchOptions: RequestInit = {
+    credentials: "include",
+    ...options,
+  };
+  const fetchResponse = await fetch(
+    `${process.env.API_HOST}${url}`,
+    fetchOptions
+  );
   const response = checkStatus(fetchResponse);
   return parseJSON(response);
 }
