@@ -197,7 +197,7 @@
         "tags": null
       },
       {
-        "id": "Blowfish",
+        "id": "blowfish",
         "name": "Blowfish",
         "icon": "/default.png",
         "desc": "一种流行的对称密钥块密码算法，支持可变长度的密钥，用于数据加解密。具有简单的结构和高效的性能。",
