@@ -24,7 +24,7 @@ export default function SM4() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/sm4", {
+        request("/box-api/v1/crypto/sm4", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })

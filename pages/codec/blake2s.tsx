@@ -24,7 +24,7 @@ export default function BLAKE2s() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/blake2s", {
+        request("/box-api/v1/codec/blake2s", {
           method: "POST",
           body: JSON.stringify({ ...values, size: s }),
         })

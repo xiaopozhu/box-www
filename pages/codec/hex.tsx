@@ -25,7 +25,7 @@ export default function Hex() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/hex", {
+        request("/box-api/v1/codec/hex", {
           method: "POST",
           body: JSON.stringify({ ...values, type: type }),
         })

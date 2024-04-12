@@ -19,7 +19,7 @@ export default function CRC32() {
   const [result, setResult] = useState<hashInfo>();
 
   const onFinish = (values: any) => {
-    request("/api/v1/codec/crc32", {
+    request("/box-api/v1/codec/crc32", {
       method: "POST",
       body: JSON.stringify(values),
     })

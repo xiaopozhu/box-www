@@ -53,7 +53,7 @@ export default function Layout(props: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    request("/api/v1/other/geoip", {
+    request("/box-api/v1/other/geoip", {
       method: "POST",
       body: JSON.stringify({}),
     })
@@ -70,7 +70,7 @@ export default function Layout(props: Props) {
   }, []);
 
   const handleLogout = () => {
-    request("/api/v1/user/logout").then((resp) => {
+    request("/box-api/v1/user/logout").then((resp) => {
       if (resp.code === 0) {
         router.reload();
       }

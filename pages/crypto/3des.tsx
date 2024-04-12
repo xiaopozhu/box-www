@@ -24,7 +24,7 @@ export default function DESTriple() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/3des", {
+        request("/box-api/v1/crypto/3des", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })

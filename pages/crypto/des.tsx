@@ -24,7 +24,7 @@ export default function DES() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/des", {
+        request("/box-api/v1/crypto/des", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })

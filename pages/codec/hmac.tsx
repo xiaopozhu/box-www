@@ -21,7 +21,7 @@ export default function HMAC() {
   const [result, setResult] = useState<hashInfo>();
 
   const onFinish = (values: any) => {
-    request("/api/v1/codec/hmac", {
+    request("/box-api/v1/codec/hmac", {
       method: "POST",
       body: JSON.stringify(values),
     })

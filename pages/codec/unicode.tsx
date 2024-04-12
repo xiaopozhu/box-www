@@ -25,7 +25,7 @@ export default function Unicode() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/unicode", {
+        request("/box-api/v1/codec/unicode", {
           method: "POST",
           body: JSON.stringify({ ...values, type: type }),
         })

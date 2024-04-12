@@ -23,7 +23,7 @@ export default function GeoIP() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/other/geoip", {
+        request("/box-api/v1/other/geoip", {
           method: "POST",
           body: JSON.stringify({ ...values }),
         })

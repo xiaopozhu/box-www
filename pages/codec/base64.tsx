@@ -25,7 +25,7 @@ export default function Base64() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/base64", {
+        request("/box-api/v1/codec/base64", {
           method: "POST",
           body: JSON.stringify({ ...values, type: type, encodeType: et }),
         })

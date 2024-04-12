@@ -24,7 +24,7 @@ export default function SHA2() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/sha2", {
+        request("/box-api/v1/codec/sha2", {
           method: "POST",
           body: JSON.stringify({ ...values, size: s }),
         })

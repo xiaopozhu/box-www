@@ -25,7 +25,7 @@ export default function Punycode() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/punycode", {
+        request("/box-api/v1/codec/punycode", {
           method: "POST",
           body: JSON.stringify({ ...values, type: type }),
         })

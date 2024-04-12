@@ -45,7 +45,7 @@ export default function Home(props: any) {
   }, [profile]);
 
   const handleFetchMybox = () => {
-    request("/api/v1/user/mybox", {
+    request("/box-api/v1/user/mybox", {
       method: "GET",
     }).then((resp) => {
       const infos: boxInfo[] = JSON.parse(JSON.stringify(boxesData));
@@ -121,7 +121,7 @@ export default function Home(props: any) {
       message.error("请前往登录!");
       return;
     }
-    request("/api/v1/user/favorite", {
+    request("/box-api/v1/user/favorite", {
       method: "PUT",
       body: JSON.stringify({ toolID: id }),
     }).then((resp) => {

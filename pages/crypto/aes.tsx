@@ -24,7 +24,7 @@ export default function AES() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/aes", {
+        request("/box-api/v1/crypto/aes", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })

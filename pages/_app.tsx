@@ -17,7 +17,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
   useEffect(() => {
     if (router.pathname != "/login/[idp]") {
-      request("/api/v1/user/profile", {
+      request("/box-api/v1/user/profile", {
         method: "GET",
       }).then((resp) => {
         if (resp.code === 0) {

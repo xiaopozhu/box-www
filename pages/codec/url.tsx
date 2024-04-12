@@ -25,7 +25,7 @@ export default function URL() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/url", {
+        request("/box-api/v1/codec/url", {
           method: "POST",
           body: JSON.stringify({ ...values, type: type }),
         })

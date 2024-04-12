@@ -19,7 +19,7 @@ export default function MD4() {
   const [result, setResult] = useState<hashInfo>();
 
   const onFinish = (values: any) => {
-    request("/api/v1/codec/md4", {
+    request("/box-api/v1/codec/md4", {
       method: "POST",
       body: JSON.stringify(values),
     })

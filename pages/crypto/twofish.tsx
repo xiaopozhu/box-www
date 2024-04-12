@@ -24,7 +24,7 @@ export default function Twofish() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/twofish", {
+        request("/box-api/v1/crypto/twofish", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })

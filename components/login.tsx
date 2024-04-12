@@ -8,7 +8,7 @@ export default function Login(props: any) {
   const router = useRouter();
 
   const handleLoginAuthURL = (idp: string) => {
-    router.push(`${process.env.API_HOST}/api/v1/oauth/${idp}/auth-url`);
+    router.push(`${process.env.API_HOST}/box-api/v1/oauth/${idp}/auth-url`);
   };
   return (
     <Modal

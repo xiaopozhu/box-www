@@ -33,7 +33,7 @@ export default function BLAKE2b() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/blake2b", {
+        request("/box-api/v1/codec/blake2b", {
           method: "POST",
           body: JSON.stringify({ ...values }),
         })

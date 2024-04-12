@@ -23,7 +23,7 @@ export default function CNY2CN() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/other/cny2cn", {
+        request("/box-api/v1/other/cny2cn", {
           method: "POST",
           body: JSON.stringify({ ...values }),
         })

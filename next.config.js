@@ -4,8 +4,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
-        destination: "http://localhost:9000/api/:path*",
+        source: "/box-api/:path*",
+        destination: "http://localhost:9000/box-api/:path*",
       },
     ];
   },

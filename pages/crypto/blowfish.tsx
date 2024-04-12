@@ -24,7 +24,7 @@ export default function Blowfish() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/crypto/blowfish", {
+        request("/box-api/v1/crypto/blowfish", {
           method: "POST",
           body: JSON.stringify({ ...values, type: t }),
         })

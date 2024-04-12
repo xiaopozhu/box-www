@@ -31,7 +31,7 @@ export default function URLParse() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/other/url-parse", {
+        request("/box-api/v1/other/url-parse", {
           method: "POST",
           body: JSON.stringify({ ...values }),
         })

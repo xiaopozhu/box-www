@@ -51,7 +51,7 @@ export default function CertParse() {
     if (file) {
       return onUploadFile();
     }
-    request("/api/v1/pkica/cert-parse", {
+    request("/box-api/v1/pkica/cert-parse", {
       method: "POST",
       body: JSON.stringify({ cert: paste }),
     })
@@ -67,7 +67,7 @@ export default function CertParse() {
   const onUploadFile = () => {
     const reader = new FileReader();
     reader.onload = (e: any) => {
-      request("/api/v1/pkica/cert-parse", {
+      request("/box-api/v1/pkica/cert-parse", {
         method: "POST",
         headers: { "Content-Type": "application/octet-stream" },
         body: e.target.result,

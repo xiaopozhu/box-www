@@ -25,7 +25,7 @@ export default function Base32() {
     form
       .validateFields()
       .then((values) => {
-        request("/api/v1/codec/base32", {
+        request("/box-api/v1/codec/base32", {
           method: "POST",
           body: JSON.stringify({ ...values, type: type, encodeType: et }),
         })

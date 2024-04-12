@@ -20,7 +20,7 @@ export default function SHA1() {
   const [result, setResult] = useState<hashInfo>();
 
   const onFinish = (values: any) => {
-    request("/api/v1/codec/sha1", {
+    request("/box-api/v1/codec/sha1", {
       method: "POST",
       body: JSON.stringify(values),
     })
